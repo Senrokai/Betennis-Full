@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and core components
 
-var BetennisApp = angular.module('Betennis', ['ui.router']);
+let BetennisApp = angular.module('Betennis', ['ui.router', 'ngResource']);
 
 BetennisApp.config(['$stateProvider', "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/accueil");
@@ -26,6 +26,9 @@ BetennisApp.config(['$stateProvider', "$urlRouterProvider", function($stateProvi
 
 BetennisApp.run(
     function( _ ) {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('core/service-worker/sw.js');
+        }
     }
 );
 BetennisApp.factory(
