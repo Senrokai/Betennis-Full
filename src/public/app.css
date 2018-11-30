@@ -113,8 +113,9 @@
 .item-background {
   position: relative;
   background-image: url('img/tennis-court-item-background-2.png');
-  height: 326px;
-  width: 700px;
+  height: 100%;
+  width: 100%;
+
   margin: 0 auto;
 
 
@@ -124,18 +125,21 @@
 }
 
 .item-container {
-  margin-bottom: 20px;
+  margin: 20px auto;
+
+  width: 800px;
+  height: 370px;
 }
 
 .item-name-1 {
   font-size: 1.6em;
-  padding-left: 50px;
+  padding-left: 8%;
   text-align: left;
 }
 
 .item-name-2 {
   font-size: 1.6em;
-  padding-right: 50px;
+  padding-right: 8%;
   text-align: right;
 }
 
@@ -144,13 +148,92 @@
   text-align: center;
 }
 
-.item-cont-1 {
-  width: 100%;
+.item-serv-1 {
+  width: 50px;
   height: 100%;
   position: relative;
+  float: left;
+    margin-top: 10px;
+    margin-left: 10px;
   background-image: url("img/service-left.png");
-  background-position: left;
-  background-size: cover;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.item-serv-2 {
+    width: 50px;
+    height: 100%;
+    position: relative;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    background-image: url("img/service-right.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.item-point-label {
+    font-size: 1.6em;
+    text-align: center;
+}
+
+.item-cont {
+    width: 40px;
+    height: 100%;
+    position: relative;
+    float: left;
+    margin-left: 7px;
+    background-image: url("img/contestation.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.item-point {
+    font-size: 2em;
+    text-align: center;
+}
+
+.item-game-label {
+    font-size: 2em;
+    text-align: center;
+}
+
+.item-set-player-1 {
+    font-size: 2.5em;
+    text-align: left;
+}
+
+.item-set-player-2 {
+    font-size: 2.5em;
+    text-align: right;
+}
+
+.item-point-player-1 {
+    font-size: 1.6em;
+    text-align: left;
+}
+
+.item-point-player-2 {
+    font-size: 1.6em;
+    text-align: right;
+}
+
+.item-time {
+    font-size: 1.2em;
+}
+
+.item-button-detail {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+}
+
+.item-court {
+    text-align: right;
+    font-size: 1.2em;
 }
 
 /* MEDIA QUERIES */
