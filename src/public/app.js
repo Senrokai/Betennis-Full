@@ -27,7 +27,15 @@ BetennisApp.config(['$stateProvider', "$urlRouterProvider", function($stateProvi
 BetennisApp.run(
     function( _ ) {
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('core/service-worker/sw.js');
+            console.log('TRY REGRISTER SW');
+            navigator.serviceWorker
+                .register('sw.js')
+                .then(function () {
+                    console.log('Service worker registered!');
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
         }
     }
 );
