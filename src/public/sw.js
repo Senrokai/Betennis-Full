@@ -1,34 +1,53 @@
 const version = 'v1';
-let log = console.log.bind(console);
+//let log = console.log.bind(console);
+const FILES_TO_CACHE = [
+    '/',
+    '/index.html',
+    '/app.css',
+    '/app.js',
+    '/lib/jquery/dist/jquery.min.js',
+    '/lib/angular/angular.js',
+    '/lib/angular/angular.min.js',
+    '/lib/angular-resource/angular-resource.js',
+    '/lib/bootstrap/dist/css/bootstrap.min.css',
+    '/lib/bootstrap/dist/js/bootstrap.min.js',
+    '/lib/@uirouter/angularjs/release/angular-ui-router.js',
+    '/lib/@uirouter/angularjs/release/angular-ui-router.min.js',
+    '/lib/lodash/lodash.min.js',
+    '/lib/popper.js/dist/umd/popper.min.js',
+    '/core/ressources/MatchRessources.js',
+    '/core/ressources/PariRessources.js',
+    '/core/services/MatchDataService.js',
+    '/pages/accueil/accueil.html',
+    '/pages/listematch/listematch.html',
+    '/pages/listematch/listematch.js',
+    '/pages/suivimatch/suivimatch.html',
+    '/pages/suivimatch/suivimatch.js',
+    '/pages/cellulematch/cellulematch.html',
+    '/pages/cellulematch/cellulematch.component.js',
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+    '/img/background.png',
+    '/img/finished-icon.png',
+    '/img/future-icon.png',
+    '/img/current-icon.png',
+    '/img/tennis-court-item-background-2.png',
+    '/img/contestation.png',
+    '/img/service-right.png',
+    '/img/service-left.png'
+];
 
 self.addEventListener('install', function (event){
-    log(`${version} installed at ${ new Date().toLocaleTimeString()}`);
+    console.log('[SERVICE WORKER] Install sw')
+    //log(`${version} installed at ${ new Date().toLocaleTimeString()}`);
     event.waitUntil(
         caches.open(version)
             .then(cache => {
-                return cache.addAll([
-                    '../../lib/angular/angular.min.js',
-                    '../../lib/bootstrap/dist/css/bootstrap.min.css',
-                    '../../lib/bootstrap/dist/js/bootstrap.min.js',
-                    '../../lib/@uirouter/angularjs/release/angular-ui-router.min.js',
-                    '../../lib/lodash/lodash.min.js',
-                    '../../core/ressources/MatchRessources.js',
-                    '../../core/ressources/PariRessources.js',
-                    '../../core/services/MatchDataService.js',
-                    '../../pages/accueil/accueil.html',
-                    '../../pages/listematch/listematch.html',
-                    '../../pages/listematch/listematch.js',
-                    '../../pages/suivimatch/suivimatch.html',
-                    '../../pages/suivimatch/suivimatch.js',
-                    '../../app.css',
-                    '../../app.js',
-                    '../../index.html'
-                ]);
+                return cache.addAll(FILES_TO_CACHE);
             }));
 });
 
 self.addEventListener('activate', function (event){
-    log(`${version} activated at ${ new Date().toLocaleTimeString()}`);
+    //log(`${version} activated at ${ new Date().toLocaleTimeString()}`);
 
     event.waitUntil(
         caches.keys()
@@ -37,7 +56,7 @@ self.addEventListener('activate', function (event){
                     return key !== version;
                 })
                     .map(key => {
-                        log(`Cleaning up the cache key ${key}`);
+                        //log(`Cleaning up the cache key ${key}`);
                         return caches.delete(key);
                     }));
             }));
@@ -50,7 +69,7 @@ self.addEventListener('fetch', function (event) {
             .then(res => {
 
                 if (res) {
-                    log(`${res.url} is actually coming from the cache now....`);
+                    //log(`${res.url} is actually coming from the cache now....`);
                     return res;
                 }
 
