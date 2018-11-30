@@ -1,7 +1,7 @@
 'use script';
 
 angular.module("Betennis").factory('MatchRessources', ['$resource', function ($resource) {
-    return $resource('api/ListeMatch', null, {
+    return $resource('api/parties/ListeMatch', null, {
             getMatchList: {
                 method: 'GET',
                 isArray: true
