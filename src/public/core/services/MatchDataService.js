@@ -14,7 +14,7 @@ angular.module('Betennis').service('MatchDataService', ['$http', '$q','MatchRess
                     });
                 }
                 else {
-                    return $q.resolve(MatchRessources.getMatchList());
+                    return MatchRessources.getMatchList().$promise;
                 }
             }
         }
