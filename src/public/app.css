@@ -23,3 +23,141 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+
+/* INDEX */
+.bg {
+  position: fixed;
+  background-image: url('img/background.png');
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+
+  background-position: center;
+  background-repeat : no-repeat;
+  background-size: cover;
+  background-attachment: local;
+}
+
+.title-link:hover {
+  text-decoration: none;
+}
+
+/* HOME */
+
+.home-title {
+  text-align: center;
+}
+
+.home-icon-current {
+  height: 200px;
+  width: 200px;
+  display: block;
+
+  background: url('img/current-icon.png') no-repeat center;
+  background-size: cover;
+  margin: 25px auto;
+}
+
+.home-icon-to-go {
+  height: 200px;
+  width: 200px;
+  display: block;
+
+  background: url('img/future-icon.png') no-repeat center;
+  background-size: cover;
+  margin: 25px auto;
+}
+
+.home-icon-finished {
+  height: 200px;
+  width: 200px;
+  display: block;
+
+  background: url('img/finished-icon.png') no-repeat center;
+  background-size: cover;
+  margin: 25px auto;
+}
+
+.home-row {
+  background-color: rgba(255,255,255,0.7);
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 25px;
+}
+
+.home-title {
+  font-size: 5em;
+  margin-bottom: 25px;
+  color: black;
+}
+
+.home-row-title {
+  text-align: center;
+  width: 100%;
+}
+
+.home-button {
+  width: 100%;
+  margin: auto;
+}
+
+.button-link {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* LIST ITEM */
+.item-background {
+  position: relative;
+  background-image: url('img/tennis-court-item-background-2.png');
+  height: 326px;
+  width: 700px;
+  margin: 0 auto;
+
+
+  background-position: center;
+  background-repeat : no-repeat;
+  background-size: cover;
+}
+
+.item-container {
+  margin-bottom: 20px;
+}
+
+.item-name-1 {
+  font-size: 1.6em;
+  padding-left: 50px;
+  text-align: left;
+}
+
+.item-name-2 {
+  font-size: 1.6em;
+  padding-right: 50px;
+  text-align: right;
+}
+
+.item-vs {
+  font-size: 1.6em;
+  text-align: center;
+}
+
+.item-cont-1 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-image: url("img/service-left.png");
+  background-position: left;
+  background-size: cover;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 970px) {
+
+  .home-row{
+    width: 70%;
+    margin: 15px auto;
+  }
+}
