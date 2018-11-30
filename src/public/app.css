@@ -131,6 +131,42 @@
   height: 370px;
 }
 
+.item-row-1 {
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.item-row-2 {
+    height: 60px;
+    padding: 10px;
+}
+
+.item-row-3 {
+    height: 60px;
+    padding: 10px;
+}
+
+.item-row-4 {
+    height: 60px;
+    padding-top: 10px;
+}
+
+.item-row-5 {
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.item-row-6 {
+    height: 120px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+
 .item-name-1 {
   font-size: 1.6em;
   padding-left: 8%;
@@ -149,33 +185,29 @@
 }
 
 .item-serv-1 {
-  width: 50px;
+  width: 60px;
   height: 100%;
   position: relative;
   float: left;
-    margin-top: 10px;
-    margin-left: 10px;
   background-image: url("img/service-left.png");
-  background-size: 80%;
+  background-size: 70%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .item-serv-2 {
-    width: 50px;
+    width: 60px;
     height: 100%;
     position: relative;
     float: right;
-    margin-top: 10px;
-    margin-right: 10px;
     background-image: url("img/service-right.png");
-    background-size: 80%;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .item-point-label {
-    font-size: 1.6em;
+    font-size: 2em;
     text-align: center;
 }
 
@@ -183,15 +215,22 @@
     width: 40px;
     height: 100%;
     position: relative;
-    float: left;
-    margin-left: 7px;
     background-image: url("img/contestation.png");
-    background-size: 100%;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
+.item-cont-left {
+    float: left;
+}
+
+.item-cont-right {
+    float: right;
+}
+
 .item-point {
+    margin: 0;
     font-size: 2em;
     text-align: center;
 }
@@ -203,37 +242,41 @@
 
 .item-set-player-1 {
     font-size: 2.5em;
-    text-align: left;
+    text-align: center;
 }
 
 .item-set-player-2 {
     font-size: 2.5em;
-    text-align: right;
+    text-align: center;
 }
 
 .item-point-player-1 {
     font-size: 1.6em;
-    text-align: left;
+    text-align: center;
 }
 
 .item-point-player-2 {
     font-size: 1.6em;
-    text-align: right;
+    text-align: center;
 }
 
 .item-time {
     font-size: 1.2em;
+    text-align: left;
+    padding-top: 20px;
 }
 
 .item-button-detail {
     margin: 0 auto;
     width: 100%;
+    height: 70%;
     display: block;
 }
 
 .item-court {
     text-align: right;
     font-size: 1.2em;
+    padding-top: 20px;
 }
 
 /* MEDIA QUERIES */
