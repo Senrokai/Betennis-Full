@@ -1,14 +1,4 @@
-<<<<<<< HEAD
 .idea/*
 client/.idea/*
 server/.idea/*
 node_modules/
-=======
-logs/*
-!.gitkeep
-node_modules/
-app/lib/
-tmp
-.DS_Store
-.idea
->>>>>>> refs/remotes/origin/master
