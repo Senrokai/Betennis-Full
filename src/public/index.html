@@ -17,17 +17,18 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body class="container">
+<div class="bg"></div>
 <!-- NAVIGATION -->
-<div class="navbar">
+<!--<div class="navbar">
         <a class="navbar-brand" href="">Betennis</a>
         <ul class="navbar-nav">
             <li><a ui-sref="accueil">Accueil</a></li>
             <li><a ui-sref="listematch">Liste Matches</a></li>
         </ul>
 </div>
-
+-->
 <div class="row">
-    <div class="span12">
+    <div class="col-lg-12">
         <div class="well" ui-view></div>
     </div>
 </div>
@@ -50,5 +51,6 @@
 <script src="core/services/MatchDataService.js"></script>
 <script src="pages/listematch/listematch.js"></script>
 <script src="pages/suivimatch/suivimatch.js"></script>
+<script src="pages/cellulematch/cellulematch.component.js"></script>
 </body>
 </html>

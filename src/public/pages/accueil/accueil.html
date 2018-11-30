@@ -1,4 +1,47 @@
-<div class="jumbotron text-center">
+<!--<div class="jumbotron text-center">
     <h1>The Homey Page</h1>
     <p>This page demonstrates <span class="text-danger">nested</span> views.</p>
+</div>
+-->
+<div class="row">
+    <div class="col-lg-12">
+        <a class="title-link" ui-sref="accueil"><h1 class="home-title">Betennis - Accueil</h1></a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg home-row" style="position: relative;">
+        <div class="row">
+            <h2 class="home-row-title">Matchs en cours</h2>
+        </div>
+        <div class="row">
+            <div class="home-icon-current"></div>
+        </div>
+        <div class="row">
+            <a class="button-link" ui-sref="listematch"><button class="btn btn-primary home-button" >Voir la liste des matchs en cours</button></a>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg home-row middle" style="position: relative;">
+        <div class="row">
+            <h2 class="home-row-title">Matchs à venir</h2>
+        </div>
+        <div class="row">
+            <div class="home-icon-to-go"></div>
+        </div>
+        <div class="row">
+            <a class="button-link" ui-sref="listematch"><button class="btn btn-primary home-button" >Voir la liste des matchs à venir</button></a>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg home-row" style="position: relative;">
+        <div class="row">
+            <h2 class="home-row-title">Matchs terminés</h2>
+        </div>
+        <div class="row">
+            <div class="home-icon-finished"></div>
+        </div>
+        <div class="row">
+            <a class="button-link" ui-sref="listematch"><button class="btn btn-primary home-button">Voir la liste des matchs terminés</button></a>
+        </div>
+    </div>
 </div>

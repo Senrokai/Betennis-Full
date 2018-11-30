@@ -23,3 +23,267 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+
+/* INDEX */
+.bg {
+  position: fixed;
+  background-image: url('img/background.png');
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+
+  background-position: center;
+  background-repeat : no-repeat;
+  background-size: cover;
+  background-attachment: local;
+}
+
+.title-link:hover {
+  text-decoration: none;
+}
+
+/* HOME */
+
+.home-title {
+  text-align: center;
+}
+
+.home-icon-current {
+  height: 200px;
+  width: 200px;
+  display: block;
+
+  background: url('img/current-icon.png') no-repeat center;
+  background-size: cover;
+  margin: 25px auto;
+}
+
+.home-icon-to-go {
+  height: 200px;
+  width: 200px;
+  display: block;
+
+  background: url('img/future-icon.png') no-repeat center;
+  background-size: cover;
+  margin: 25px auto;
+}
+
+.home-icon-finished {
+  height: 200px;
+  width: 200px;
+  display: block;
+
+  background: url('img/finished-icon.png') no-repeat center;
+  background-size: cover;
+  margin: 25px auto;
+}
+
+.home-row {
+  background-color: rgba(255,255,255,0.7);
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 25px;
+}
+
+.home-title {
+  font-size: 5em;
+  margin-bottom: 25px;
+  color: black;
+}
+
+.home-row-title {
+  text-align: center;
+  width: 100%;
+}
+
+.home-button {
+  width: 100%;
+  margin: auto;
+}
+
+.button-link {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* LIST ITEM */
+.item-background {
+  position: relative;
+  background-image: url('img/tennis-court-item-background-2.png');
+  height: 100%;
+  width: 100%;
+
+  margin: 0 auto;
+
+
+  background-position: center;
+  background-repeat : no-repeat;
+  background-size: cover;
+}
+
+.item-container {
+  margin: 20px auto;
+
+  width: 800px;
+  height: 370px;
+}
+
+.item-row-1 {
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.item-row-2 {
+    height: 60px;
+    padding: 10px;
+}
+
+.item-row-3 {
+    height: 60px;
+    padding: 10px;
+}
+
+.item-row-4 {
+    height: 60px;
+    padding-top: 10px;
+}
+
+.item-row-5 {
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.item-row-6 {
+    height: 120px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+
+.item-name-1 {
+  font-size: 1.6em;
+  padding-left: 8%;
+  text-align: left;
+}
+
+.item-name-2 {
+  font-size: 1.6em;
+  padding-right: 8%;
+  text-align: right;
+}
+
+.item-vs {
+  font-size: 1.6em;
+  text-align: center;
+}
+
+.item-serv-1 {
+  width: 60px;
+  height: 100%;
+  position: relative;
+  float: left;
+  background-image: url("img/service-left.png");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.item-serv-2 {
+    width: 60px;
+    height: 100%;
+    position: relative;
+    float: right;
+    background-image: url("img/service-right.png");
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.item-point-label {
+    font-size: 2em;
+    text-align: center;
+}
+
+.item-cont {
+    width: 40px;
+    height: 100%;
+    position: relative;
+    background-image: url("img/contestation.png");
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.item-cont-left {
+    float: left;
+}
+
+.item-cont-right {
+    float: right;
+}
+
+.item-point {
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+}
+
+.item-game-label {
+    font-size: 2em;
+    text-align: center;
+}
+
+.item-set-player-1 {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.item-set-player-2 {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.item-point-player-1 {
+    font-size: 1.6em;
+    text-align: center;
+}
+
+.item-point-player-2 {
+    font-size: 1.6em;
+    text-align: center;
+}
+
+.item-time {
+    font-size: 1.2em;
+    text-align: left;
+    padding-top: 20px;
+}
+
+.item-button-detail {
+    margin: 0 auto;
+    width: 100%;
+    height: 70%;
+    display: block;
+}
+
+.item-court {
+    text-align: right;
+    font-size: 1.2em;
+    padding-top: 20px;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 970px) {
+
+  .home-row{
+    width: 70%;
+    margin: 15px auto;
+  }
+}
