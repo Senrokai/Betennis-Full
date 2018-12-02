@@ -12,16 +12,17 @@ BetennisApp.config(['$stateProvider', "$urlRouterProvider", function($stateProvi
             url: "/accueil",
             templateUrl:"pages/accueil/accueil.html"
         })
+        .state('listematch.suivimatch', {
+            url:"/suivimatch",
+            templateUrl:"pages/suivimatch/suivimatch.html",
+            controller: "suiviMatchCtrl",
+        })
         .state('listematch', {
             url:"/listematch",
             templateUrl:"pages/listematch/listematch.html",
             controller: "listeMatchCtrl"
         })
-        .state('listematch.suivimatch', {
-            url:"/suivimatch",
-            templateUrl:"pages/suivimatch/suivimatch.html",
-            controller: "suiviMatchCtrl"
-        })
+
 }]);
 
 BetennisApp.run(
