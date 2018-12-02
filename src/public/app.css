@@ -279,6 +279,153 @@
     padding-top: 20px;
 }
 
+/* ITEM DETAIL */
+.item-detail-container {
+    width: 700px;
+    margin: 0 auto;
+    height: 1500px;
+}
+
+.item-detail-background {
+    position: relative;
+    background-image: url('img/tennis-court-detail.png');
+    height: 100%;
+    width: 100%;
+
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 50px;
+
+
+    background-position: center;
+    background-repeat : no-repeat;
+    background-size: cover;
+}
+
+.item-detail-row-1 {
+    height: 50px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.item-detail-row-2 {
+    height: 115px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.item-detail-player-1-set {
+    position: relative;
+    background-image : url('img/tennisball.png');
+    margin: 0;
+
+    background-position: center;
+    background-repeat : no-repeat;
+    background-size: 100%;
+}
+
+.item-detail-bet-button {
+    padding-top: 30px;
+}
+
+.item-detail-bet-button button {
+    position: relative;
+    display: block;
+    width: 70%;
+    height: 60px;
+    margin: 0 auto;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+.item-detail-player-1-cont {
+    position: relative;
+    background-image : url('img/contestation.png');
+    margin: 0;
+
+    background-position: center;
+    background-repeat : no-repeat;
+    background-size: 100%;
+}
+
+.item-detail-player-1-serv {
+    position: relative;
+    background-image : url('img/service-left.png');
+    margin: 0;
+
+    background-position: center;
+    background-repeat : no-repeat;
+    background-size: 100%;
+}
+
+
+.item-detail-row-3 {
+    height: 115px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.item-detail-name {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2em;
+    padding-top: 35px;
+}
+
+.item-detail-row-4 {
+    height: 115px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.item-detail-row-5 {
+    height: 370px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 70px;
+}
+
+.item-detail-jeu {
+    font-size: 12em;
+    text-align: center;
+    display: block;
+    height: 100%;
+    font-weight: bolder;
+}
+
+.item-detail-point {
+    font-size: 9em;
+    padding-top: 50px;
+    text-align: center;
+    display: block;
+    height: 100%;
+    font-weight: bold;
+}
+
+.item-detail-row-6 {
+    height: 70px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 5px;
+}
+
+.item-detail-jeu-label {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.item-detail-time {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.item-detail-point-label {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 970px) {
 
