@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and core components
 
-let BetennisApp = angular.module('Betennis', ['ui.router', 'ngResource']);
+let BetennisApp = angular.module('Betennis', ['ui.router', 'ngResource', 'ui.bootstrap']);
 
 BetennisApp.config(['$stateProvider', "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/accueil");
