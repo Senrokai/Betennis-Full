@@ -44,7 +44,7 @@
                 </div>
                 <div class="row item-row-6">
                     <div class="col-lg-4"><p class="item-time">Temps: {{ convertTime(match.temps_partie) }}</p></div>
-                    <div class="col-lg-4"><a ng-click="goToMatchDetail(0)"><button class="item-button-detail btn btn-primary">Afficher les détails</button></a></div>
+                    <div class="col-lg-4"><button class="item-button-detail btn btn-primary" ng-click="goToMatchDetail($index)">Afficher les détails</button></a></div>
                     <div class="col-lg-4"><p class="item-court">Terrain : {{ match.terrain }}</p></div>
                 </div>
             </div>

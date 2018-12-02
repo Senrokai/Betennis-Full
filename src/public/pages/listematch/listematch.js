@@ -6,32 +6,30 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
 
     MatchDataService.GetData().then(function (result) {
         $scope.listeMatch = result;
+        delete $scope.listeMatch.$promise;
+        delete $scope.listeMatch.$resolved;
+        localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
     }, function (error) {
         console.log(error);
     });
 
-    $scope.convertTime = function(timeInSeconds)
-    {
+    $scope.convertTime = function (timeInSeconds) {
         let nbHours = Math.floor(timeInSeconds / 3600);
         let nbMinutes = timeInSeconds % 60;
 
-        if(nbHours < 10)
-        {
+        if (nbHours < 10) {
             nbHours = "0" + nbHours;
         }
 
-        if(nbMinutes < 10)
-        {
+        if (nbMinutes < 10) {
             nbMinutes = "0" + nbMinutes;
         }
 
         return nbHours + "h" + nbMinutes;
     };
 
-    $scope.convertScore = function(scoreFromZeroToThree)
-    {
-        switch(scoreFromZeroToThree)
-        {
+    $scope.convertScore = function (scoreFromZeroToThree) {
+        switch (scoreFromZeroToThree) {
             case 1:
                 return 15;
             case 2:
@@ -43,10 +41,11 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         }
     };
 
-    $scope.goToMatchDetail = function(idMatch)
-    {
-        $state.go("listematch.suivimatch",{
-            "id": idMatch
+    $scope.goToMatchDetail = function (idMatch) {
+        let match = angular.toJson($scope.listeMatch[idMatch]);
+        $state.go("suivimatch", {
+            "id": idMatch,
+            "match": match
         });
     }
 

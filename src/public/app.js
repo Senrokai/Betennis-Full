@@ -4,29 +4,33 @@
 
 let BetennisApp = angular.module('Betennis', ['ui.router', 'ngResource']);
 
-BetennisApp.config(['$stateProvider', "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
+BetennisApp.config(['$stateProvider', "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/accueil");
 
     $stateProvider
         .state('accueil', {
             url: "/accueil",
-            templateUrl:"pages/accueil/accueil.html"
+            templateUrl: "pages/accueil/accueil.html"
         })
-        .state('listematch.suivimatch', {
-            url:"/suivimatch",
-            templateUrl:"pages/suivimatch/suivimatch.html",
-            controller: "suiviMatchCtrl",
-        })
+
         .state('listematch', {
-            url:"/listematch",
-            templateUrl:"pages/listematch/listematch.html",
+            url: "/listematch",
+            templateUrl: "pages/listematch/listematch.html",
             controller: "listeMatchCtrl"
+        })
+        .state('suivimatch', {
+            url: "/listematch/suivimatch/:id",
+            params: {
+                match: null
+            },
+            templateUrl: "pages/suivimatch/suivimatch.html",
+            controller: "suiviMatchCtrl",
         })
 
 }]);
 
 BetennisApp.run(
-    function( _ ) {
+    function (_) {
         if ('serviceWorker' in navigator) {
             console.log('TRY REGRISTER SW');
             navigator.serviceWorker
@@ -34,7 +38,7 @@ BetennisApp.run(
                 .then(function () {
                     console.log('Service worker registered!');
                 })
-                .catch(function(err) {
+                .catch(function (err) {
                     console.log(err);
                 });
         }
@@ -42,8 +46,8 @@ BetennisApp.run(
 );
 BetennisApp.factory(
     "_",
-    function( $window ) {
+    function ($window) {
         var _ = $window._;
-        return( _ );
+        return (_);
     }
 );
