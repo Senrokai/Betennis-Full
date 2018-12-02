@@ -302,6 +302,11 @@
     background-size: cover;
 }
 
+.item-detail-image-container {
+    padding: 0;
+
+}
+
 .item-detail-row-1 {
     height: 50px;
     width: 100%;
@@ -318,6 +323,8 @@
     position: relative;
     background-image : url('img/tennisball.png');
     margin: 0;
+    width: 100%;
+    height: 100%;
 
     background-position: center;
     background-repeat : no-repeat;
@@ -342,6 +349,8 @@
     position: relative;
     background-image : url('img/contestation.png');
     margin: 0;
+    width: 100%;
+    height: 100%;
 
     background-position: center;
     background-repeat : no-repeat;
@@ -350,6 +359,8 @@
 
 .item-detail-player-1-serv {
     position: relative;
+    width: 100%;
+    height: 100%;
     background-image : url('img/service-left.png');
     margin: 0;
 
@@ -376,6 +387,14 @@
     height: 115px;
     width: 100%;
     margin: 0 auto;
+}
+
+.item-detail-result {
+    font-size: 2.5em;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 20px;
+    font-weight: bold;
 }
 
 .item-detail-row-5 {
