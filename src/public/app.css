@@ -308,9 +308,38 @@
 }
 
 .item-detail-row-1 {
-    height: 50px;
+    height: 80px;
     width: 100%;
     margin: 0 auto;
+    background-color: #6C917F;
+    border: 13px solid white;
+    border-bottom: none;
+}
+
+.item-detail-gain-label {
+    font-size: 2em;
+    padding-top: 5px;
+    color: white;
+}
+
+.item-detail-bet {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 0.8em;
+    color: white;
+}
+
+.item-detail-refresh-button {
+    height: 70%;
+    width: 70%;
+    margin-top: 10px;
+    margin-left: auto;
+    display: block;
+}
+
+.item-detail-refresh-button img {
+    height: 100%;
+    width: 100%;
 }
 
 .item-detail-row-2 {

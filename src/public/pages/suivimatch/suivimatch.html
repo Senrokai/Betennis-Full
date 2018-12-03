@@ -1,20 +1,19 @@
-<div class="row">
+<div class="row" class="modal-demo">
     <div class="col-lg-12">
         <a class="title-link" ui-sref="accueil"><h1 class="home-title">Betennis - Suivi du match</h1></a>
     </div>
-
         <div class="col-lg-12">
             <div class="item-detail-container">
                 <div class="row item-detail-row-1">
-                    <div class="item-detail-gain-label col-lg-6"><p>Gain potentiel : </p></div>
-                    <div class="item-detail-bet-label col-lg-4">Veuillez parier pour connaître votre gain potentiel.</div>
-                    <div class="item-detail-refresh col-lg-2">Refresh</div>
+                    <div class="col-lg-6"><p class="item-detail-gain-label">Gain potentiel : </p></div>
+                    <div class="col-lg-4"><p class="item-detail-bet">Veuillez parier pour connaître votre gain potentiel.</p></div>
+                    <div class="col-lg-2"><button class="item-detail-refresh-button btn btn-primary"><img src="../../img/refresh.png" /></button></div>
                 </div>
                 <div class="item-detail-background">
                     <div class="row item-detail-row-2">
                         <div class="col-lg-2"></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[0] >= 2" class="item-detail-player-1-set"></div></div>
-                        <div class="item-detail-bet-button col-lg-6"><button class="btn btn-primary">Parier sur ce joueur</button></div>
+                        <div class="item-detail-bet-button col-lg-6"><button ng-click="openModal('sm', null, match.joueur1.prenom + '' + match.joueur1.nom)" class="btn btn-primary">Parier sur ce joueur</button></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.constestation[0] >= 1" class="item-detail-player-1-cont"></div></div>
                         <div class="col-lg-2"></div>
                     </div>
@@ -75,3 +74,17 @@
             </div>
     </div>
 </div>
+
+<script type="text/ng-template" id="modalparis.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title" >Parier sur <span id="playerName"></span></h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <label for="somme-paris">Somme à parier : </label>
+        <input id="somme-paris" type="number" min="1" max="10000" step="1" />
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="validerParis()">Valider</button>
+        <button class="btn btn-warning" type="button" ng-click="annulerParis()">Annuler</button>
+    </div>
+</script>
