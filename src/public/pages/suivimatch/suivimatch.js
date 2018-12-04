@@ -16,8 +16,6 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         {
             $scope.betButtonDisabled = true;
         }
-        $scope.urlParams = $location.path().split('/');
-        $scope.matchId = $scope.urlParams[$scope.urlParams.length - 1];
         $scope.betValue = 0;
         $scope.modalInstance = null;
         $scope.playerToBet = 0;
@@ -27,7 +25,7 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
 
         MatchDataService.GetData().then(function (result) {
             $scope.listeMatch = result;
-            $scope.match = $scope.listeMatch[$scope.matchId];
+            $scope.match = $scope.listeMatch[$stateParams.id];
             delete $scope.listeMatch.$promise;
             delete $scope.listeMatch.$resolved;
             localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
@@ -147,7 +145,7 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         };
 
         $scope.sendBet = function () {
-            let url = 'api/parties/' + $scope.matchId + '/paris/' + $scope.playerToBet + '/' + $scope.betValue;
+            let url = 'api/parties/' + $stateParams.id + '/paris/' + $scope.playerToBet + '/' + $scope.betValue;
             $http.put(url, null).then(function (res) {
                     console.log(res);
                 },
