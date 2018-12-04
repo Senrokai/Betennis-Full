@@ -472,7 +472,10 @@
     font-size: 2.5em;
 }
 
-
+/* MODAL */
+.modal-backdrop {
+    opacity: 0.6;
+}
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 970px) {

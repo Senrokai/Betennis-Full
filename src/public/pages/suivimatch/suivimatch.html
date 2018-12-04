@@ -13,7 +13,7 @@
                     <div class="row item-detail-row-2">
                         <div class="col-lg-2"></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[0] >= 2" class="item-detail-player-1-set"></div></div>
-                        <div class="item-detail-bet-button col-lg-6"><button ng-click="openModal('sm', null, match.joueur1.prenom + '' + match.joueur1.nom)" class="btn btn-primary">Parier sur ce joueur</button></div>
+                        <div class="item-detail-bet-button col-lg-6"><button ng-click="openBetModalPlayer1('sm', null)" class="btn btn-primary">Parier sur ce joueur</button></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.constestation[0] >= 1" class="item-detail-player-1-cont"></div></div>
                         <div class="col-lg-2"></div>
                     </div>
@@ -65,7 +65,7 @@
                     <div class="row item-detail-row-2">
                         <div class="col-lg-2"></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[1] >= 1" class="item-detail-player-1-set"></div></div>
-                        <div class="item-detail-bet-button col-lg-6"><button class="btn btn-primary">Parier sur ce joueur</button></div>
+                        <div class="item-detail-bet-button col-lg-6"><button ng-click="openBetModalPlayer2('sm', null)" class="btn btn-primary">Parier sur ce joueur</button></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.constestation[0] >= 1" class="item-detail-player-1-cont"></div></div>
                         <div class="col-lg-2"></div>
                     </div>
@@ -75,16 +75,30 @@
     </div>
 </div>
 
-<script type="text/ng-template" id="modalparis.html">
+<script type="text/ng-template" id="betModalPlayer1.html" ng-controller="suiviMatchCtrl">
     <div class="modal-header">
-        <h3 class="modal-title" id="modal-title" >Parier sur <span id="playerName"></span></h3>
+        <h3 class="modal-title" class="modal-title" >Parier sur {{ match.joueur1.prenom }}  {{ match.joueur1.nom}}</h3>
     </div>
-    <div class="modal-body" id="modal-body">
-        <label for="somme-paris">Somme à parier : </label>
-        <input id="somme-paris" type="number" min="1" max="10000" step="1" />
+    <div class="modal-body" class="modal-body">
+        <label> Somme à parier : </label>
+        <input class="somme-paris" type="number" min="1" max="10000" step="1" ng-model="betValue"/>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="validerParis()">Valider</button>
-        <button class="btn btn-warning" type="button" ng-click="annulerParis()">Annuler</button>
+        <button class="btn btn-primary" type="button" ng-click='validBet()'>Valider</button>
+        <button class="btn btn-warning" type="button" ng-click='cancelBet()'>Annuler</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="betModalPlayer2.html" ng-controller="suiviMatchCtrl">
+    <div class="modal-header">
+        <h3 class="modal-title" class="modal-title" >Parier sur {{ match.joueur2.prenom }}  {{ match.joueur2.nom}}</h3>
+    </div>
+    <div class="modal-body" class="modal-body">
+        <label >Somme à parier : </label>
+        <input class="somme-paris" type="number" min="1" max="10000" step="1" ng-model="betValue"/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click='validBet()'>Valider</button>
+        <button class="btn btn-warning" type="button" ng-click='cancelBet()'>Annuler</button>
     </div>
 </script>

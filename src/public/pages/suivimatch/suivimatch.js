@@ -1,42 +1,80 @@
 'use strict';
 
-angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal",
+angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", 'PariRessources',
 
-    function ($scope, _, $stateParams, $modalInstance) {
-    $scope.match = angular.fromJson($stateParams.match);
-    if($scope.match===null) {
-        $scope.match = angular.fromJson(localStorage.getItem("liste-match"))[$stateParams.id];
-    }
-    console.log($scope.match);
-    $scope.instance = null;
+    function ($scope, _, $stateParams, $uibModal, PariRessources) {
+        $scope.match = angular.fromJson($stateParams.match);
+        if ($scope.match === null) {
+            $scope.match = angular.fromJson(localStorage.getItem("liste-match"))[$stateParams.id];
+        }
+
+        $scope.betValue = 0;
+        $scope.modalInstance = null;
+        $scope.playerToBet = 0;
 
 
-    $scope.openModal = function (size, parentSelector, playerToBet) {
+    $scope.openBetModalPlayer1 = function (size, parentSelector) {
 
-        var parentElem = parentSelector ?
-            angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-        var modalInstance = $modalInstance.open({
+        $scope.playerToBet = 0;
+
+        let parentElem = parentSelector ? angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+
+        $scope.modalInstance = $uibModal.open({
             animation: this.animationsEnabled,
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'modalparis.html',
+            templateUrl: 'betModalPlayer1.html',
             controller: 'suiviMatchCtrl',
-            controllerAs: '$ctrl',
             size: size,
+            scope: $scope,
             appendTo: parentElem,
             resolve: {
-                items: function () {
-                    return null;//this.items;
+                betValue: function () {
+                    return $scope.betValue;
                 }
             }
         });
 
-        modalInstance.result.then(function (selectedItem) {
-            this.selected = selectedItem;
+        $scope.modalInstance.result.then(function (result) {
+            console.log("Modal validé");
+            $scope.betValue = result;
+            $scope.sendBet();
         }, function () {
-            //$log.info('Modal dismissed at: ' + new Date());
+            console.log("Modal annulé");
         });
     };
+
+    $scope.openBetModalPlayer2 = function (size, parentSelector) {
+
+        $scope.playerToBet = 1;
+
+        let parentElem = parentSelector ? angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+
+        $scope.modalInstance = $uibModal.open({
+            animation: this.animationsEnabled,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'betModalPlayer2.html',
+            controller: 'suiviMatchCtrl',
+            size: size,
+            scope: $scope,
+            appendTo: parentElem,
+            resolve: {
+                betValue: function () {
+                    return $scope.betValue;
+                }
+            }
+        });
+
+        $scope.modalInstance.result.then(function (result) {
+            console.log("Modal validé");
+            $scope.betValue = result;
+            $scope.sendBet();
+        }, function () {
+            console.log("Modal annulé");
+        });
+    };
+
 
     $scope.convertScore = function (scoreFromZeroToThree) {
         switch (scoreFromZeroToThree) {
@@ -53,7 +91,7 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
 
     $scope.convertTime = function (timeInSeconds) {
         let nbHours = Math.floor(timeInSeconds / 3600);
-        let nbMinutes = timeInSeconds % 60;
+        let nbMinutes = Math.floor(timeInSeconds / 60);
 
         if (nbHours < 10) {
             nbHours = "0" + nbHours;
@@ -70,41 +108,29 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
     {
         if(nbOfSet >= 2)
         {
-            return "win";
+            return "gagnant";
         }
         else
         {
-            return "lose";
+            return "perdant";
         }
-    }
+    };
 
-    $scope.openBetModal = function()
+    $scope.cancelBet = function()
     {
+        $scope.$parent.modalInstance.dismiss('cancel');
+    };
 
-            $scope.instance = $modalInstance.open({
-                animation: this.animationsEnabled,
-                ariaLabelledBy: 'modal-title-top',
-                ariaDescribedBy: 'modal-body-top',
-                controller: 'suiviMatchCtrl',
-                size: 'sm',
-                templateUrl: 'pages/suivimatch/modalparis.html'
-            });
-
-            $scope.instance.result.then(function () {
-
-            }, function () {
-
-            });
-
-    }
-
-    $scope.annulerParis = function(result)
+    $scope.validBet = function()
     {
-        $scope.instance.close(result);
-    }
+        $scope.$parent.modalInstance.close($scope.betValue);
+    };
 
-    $scope.validerParis = function()
+    $scope.sendBet = function()
     {
-        $scope.instance.close();
-    }
+        console.log("SEND BET");
+        console.log($scope.betValue);
+        console.log("JOUEUR QUI PARIS : " + $scope.playerToBet);
+        PariRessources.placerPari()
+    };
 }]);
