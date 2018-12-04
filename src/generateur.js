@@ -40,7 +40,7 @@ function demarrerPartie(partie) {
         partie.jouerTour();
         if (partie.estTerminee()) {
             opSocket.sockets.emit('matchEnded',{msg:'La partie ' + partie.joueurs[0].nom + '(' + partie.pointage.manches[0] + ') vs ' +
-                                                                   partie.joueurs[1].nom + '(' + partie.pointage.manches[0] + ') est terminée.'});
+                                                                   partie.joueurs[1].nom + '(' + partie.pointage.manches[1] + ') est terminée.'});
             clearInterval(timer);
         }
     }, Math.floor(1000 / modificateurVitesse));
