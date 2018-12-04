@@ -6,20 +6,20 @@
             <div class="item-detail-container">
                 <div class="row item-detail-row-1">
                     <div class="col-lg-6"><p class="item-detail-gain-label">Gain potentiel : </p></div>
-                    <div class="col-lg-4"><p class="item-detail-bet">Veuillez parier pour connaître votre gain potentiel.</p></div>
-                    <div class="col-lg-2"><button class="item-detail-refresh-button btn btn-primary"><img src="../../img/refresh.png" /></button></div>
+                    <div class="col-lg-4"><p class="item-detail-bet">{{ paris }}</p></div>
+                    <div class="col-lg-2"><button ng-click="refreshPage()" class="item-detail-refresh-button btn btn-primary"><img src="../../img/refresh.png" /></button></div>
                 </div>
                 <div class="item-detail-background">
                     <div class="row item-detail-row-2">
                         <div class="col-lg-2"></div>
-                        <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[0] >= 2" class="item-detail-player-1-set"></div></div>
+                        <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[0] >= 1" class="item-detail-player-1-set"></div></div>
                         <div class="item-detail-bet-button col-lg-6"><button ng-disabled="betButtonDisabled" ng-click="openBetModalPlayer1('sm', null)" class="btn btn-primary">Parier sur ce joueur</button></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.constestation[0] >= 1" class="item-detail-player-1-cont"></div></div>
                         <div class="col-lg-2"></div>
                     </div>
                     <div class="row item-detail-row-3">
                         <div class="col-lg-2"></div>
-                        <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[0] >= 1" class="item-detail-player-1-set"></div></div>
+                        <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[0] >= 2" class="item-detail-player-1-set"></div></div>
                         <div class="col-lg-6"><p class="item-detail-name">{{ match.joueur1.prenom }} {{ match.joueur1.nom }}</p></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.constestation[0] >= 2" class="item-detail-player-1-cont"></div></div>
                         <div class="col-lg-2"></div>

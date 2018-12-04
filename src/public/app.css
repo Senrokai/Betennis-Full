@@ -155,6 +155,12 @@
   height: 370px;
 }
 
+.item-row-menu {
+    height: 80px;
+    width: 800px;
+    margin: 0 auto;
+}
+
 .item-row-1 {
     height: 50px;
     padding-top: 10px;
