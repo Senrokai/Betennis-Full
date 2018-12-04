@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", 'PariRessources', '$location', '$http',
+angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", '$location', '$http', 'MatchDataService',
 
-    function ($scope, _, $stateParams, $uibModal, PariRessources, $location, $http) {
+    function ($scope, _, $stateParams, $uibModal,  $location, $http, MatchDataService) {
         $scope.match = angular.fromJson($stateParams.match);
         if ($scope.match === null) {
             $scope.match = angular.fromJson(localStorage.getItem("liste-match"))[$stateParams.id];
@@ -21,7 +21,21 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         $scope.modalInstance = null;
         $scope.playerToBet = 0;
 
+    $scope.refreshPage = function()
+    {
 
+        MatchDataService.GetData().then(function (result) {
+            $scope.listeMatch = result;
+            $scope.match = $scope.listeMatch[$scope.matchId];
+            delete $scope.listeMatch.$promise;
+            delete $scope.listeMatch.$resolved;
+            localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
+
+        }, function (error) {
+            console.log(error);
+        });
+    }
+    ;
 
     $scope.openBetModalPlayer1 = function (size, parentSelector) {
 
