@@ -12,7 +12,7 @@
             <div class="home-icon-current"></div>
         </div>
         <div class="row">
-            <a class="button-link" ui-sref="listematch"><button class="btn btn-primary home-button" >Voir la liste des matchs en cours</button></a>
+            <a class="button-link" ng-click="displayMatchList(0)" ><button class="btn btn-primary home-button" >Voir la liste des matchs en cours</button></a>
         </div>
     </div>
     <div class="col-lg-1"></div>
@@ -24,7 +24,7 @@
             <div class="home-icon-to-go"></div>
         </div>
         <div class="row">
-            <a class="button-link" ui-sref="listematch"><button class="btn btn-primary home-button" >Voir la liste des matchs à venir</button></a>
+            <a class="button-link" ng-click="displayMatchList(1)"><button class="btn btn-primary home-button" >Voir la liste des matchs à venir</button></a>
         </div>
     </div>
     <div class="col-lg-1"></div>
@@ -36,7 +36,7 @@
             <div class="home-icon-finished"></div>
         </div>
         <div class="row">
-            <a class="button-link" ui-sref="listematch"><button class="btn btn-primary home-button">Voir la liste des matchs terminés</button></a>
+            <a class="button-link" ng-click="displayMatchList(2)"><button class="btn btn-primary home-button">Voir la liste des matchs terminés</button></a>
         </div>
     </div>
 </div>
