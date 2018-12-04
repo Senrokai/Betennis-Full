@@ -2,7 +2,7 @@ const Partie = require('./modeles/partie');
 const Joueur = require('./modeles/joueur');
 var opSocket = null;
 
-const modificateurVitesse = 10;//Math.min(process.argv[2], 1);
+const modificateurVitesse = Math.min(process.argv[2], 1);
 
 const listePartie = [];
 
