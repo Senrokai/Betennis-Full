@@ -163,8 +163,8 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         };
 
         $scope.convertTime = function (timeInSeconds) {
-            let nbHours = Math.floor(timeInSeconds / 3600);
-            let nbMinutes = Math.floor(timeInSeconds / 60);
+            let nbHours = Math.floor(timeInSeconds / 3600) % 60;
+            let nbMinutes = Math.floor(timeInSeconds / 60) % 60;
 
             if (nbHours < 10) {
                 nbHours = "0" + nbHours;
