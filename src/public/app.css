@@ -516,8 +516,204 @@
   }
 }
 
-@media screen and (max-width: 900px) {
-    .home-title {
+@media screen and (max-width: 1000px) {
 
+    body.container {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .home-title {
+        font-size: 3em;
+    }
+    .item-detail-container {
+
+    }
+
+
+
+
+    .item-detail-row-1 {
+
+    }
+    .col-lg-6, .col-lg-4 , col-lg-2 {
+        width: auto !important;
+    }
+
+    .item-detail-row-1 .col-lg-6, .item-detail-row-1 .col-lg-4 {
+        width: 40% !important;
+    }
+
+    .item-detail-row-1 .col-lg-2 {
+        width: 20% !important;
+    }
+
+
+    .item-detail-row-1 .item-detail-refresh-button {
+        width: 50px;
+        height: 50px;
+        float: right;
+        height: auto !important;
+    }
+
+    .item-detail-row-2 .col-lg-6 {
+        width: 50% !important;
+    }
+    .item-detail-row-2 .col-lg-1 {
+        width: 9% !important;
+    }
+
+    .item-detail-row-2 .col-lg-2 {
+        width: 16% !important;
+    }
+
+
+
+    .item-detail-row-3 .col-lg-6 {
+        width: 50% !important;
+    }
+    .item-detail-row-3 .col-lg-1 {
+        width: 9% !important;
+    }
+
+    .item-detail-row-3 .col-lg-2 {
+        width: 16% !important;
+    }
+
+    .item-detail-row-4 .col-lg-6 {
+        width: 50% !important;
+    }
+    .item-detail-row-4 .col-lg-1 {
+        width: 9% !important;
+    }
+
+    .item-detail-row-4 .col-lg-2 {
+        width: 16% !important;
+    }
+
+    .item-detail-row-5 .col-lg-2 {
+        width: 15% !important;
+    }
+    .item-detail-row-5 .col-lg-4 {
+        width: 35% !important;
+    }
+
+    .item-detail-row-6 .col-lg-2 {
+         width: 20%!important;
+    }
+
+    .item-detail-row-6 .col-lg-8 {
+        width: 60% !important;
+    }
+
+
+
+}
+
+@media screen and (max-width: 900px) {
+    .item-detail-row-1 .item-detail-gain-label {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .item-detail-container {
+        width: 500px;
+        padding: 0 !important;
+    }
+
+    .item-detail-background {
+        background-size: contain;
+        background-position: top;
+    }
+
+    .item-detail-row-2 {
+        height: 85px;
+    }
+    .item-detail-row-2 .item-detail-bet-button {
+        padding-top: 30px;
+    }
+    .item-detail-row-2 .item-detail-bet-button button {
+        font-size: 12px;
+        height: 30px;
+    }
+
+    .item-detail-row-3 {
+        height: 85px;
+    }
+    .item-detail-row-3 .item-detail-name {
+        font-size: 20px;
+    }
+
+    .item-detail-row-4 {
+        height: 85px;
+    }
+
+    .item-detail-row-4 .item-detail-result {
+        font-size: 25px;
+    }
+
+    .item-detail-row-5 {
+        height: 245px;
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .item-detail-container {
+        width: 380px;
+    }
+
+    .item-detail-row-1 {
+        height: 100px;
+    }
+
+    .item-detail-row-1 .item-detail-gain-label {
+        font-size: 18px;
+    }
+    .item-detail-row-1 .item-detail-bet {
+        font-size: 12px;
+    }
+
+    .item-detail-row-2 {
+        height: 65px;
+    }
+    .item-detail-row-2 .item-detail-bet-button {
+        padding-top: 20px;
+    }
+    .item-detail-row-2 .item-detail-bet-button button {
+        width: 100%;
+    }
+
+    .item-detail-row-3 {
+        height: 65px;
+    }
+    .item-detail-row-3 .item-detail-name {
+        padding-top: 20px;
+    }
+
+    .item-detail-row-4 {
+        height: 65px;
+    }
+    .item-detail-row-4 .item-detail-result {
+        padding-top: 15px;
+    }
+    .item-detail-row-5 {
+        padding-top: 0;
+        height: 180px;
+    }
+    .item-detail-row-5 .item-detail-jeu {
+        font-size: 130px;
+    }
+    .item-detail-row-5 .item-detail-point {
+        font-size: 100px;
+        padding-top: 20px;
+    }
+
+    .item-detail-row-6 .col-lg-2 {
+        width: 30% !important;
+    }
+    .item-detail-row-6 .col-lg-8 {
+        width: 40% !important;
     }
 }
