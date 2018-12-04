@@ -109,6 +109,30 @@
   margin: 0 auto;
 }
 
+/* NO MATCH FOUND */
+.no-match-found-container {
+    width: 800px;
+    margin: 20px auto;
+}
+
+.no-match-found-container .no-match-found-label {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* FILTER BUTTONS*/
+.button-container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.button-container button {
+    width: 100%;
+    font-size: 1.3em;
+}
+
 /* LIST ITEM */
 .item-background {
   position: relative;

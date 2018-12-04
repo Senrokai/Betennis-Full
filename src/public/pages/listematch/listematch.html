@@ -5,7 +5,23 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <div class="item-container"  ng-repeat="match in listeMatch">
+        <div class="button-container row">
+            <div class="col-lg-4">
+                <button ng-class="{'active': activeFilter == 0}" class="btn btn-primary" ng-click="filterButtonClickProcess(0)" >Matchs en cours</button>
+            </div>
+            <div class="col-lg-4">
+                <button ng-class="{'active': activeFilter == 1}" class="btn btn-primary" ng-click="filterButtonClickProcess(1)" >Matchs à venir</button>
+            </div>
+            <div class="col-lg-4">
+                <button ng-class="{'active': activeFilter == 2}" class="btn btn-primary" ng-click="filterButtonClickProcess(2)" >Matchs terminés</button>
+            </div>
+        </div>
+        <div ng-if="aucunMatchTrouve" class="col-lg-12">
+            <div class="no-match-found-container">
+                <p class="no-match-found-label">Aucun match n'a été trouvé avec ce filtre.</p>
+            </div>
+        </div>
+        <div class="item-container"  ng-repeat="match in listeMatchFiltre">
             <div class="item-background">
                 <div class="row item-row-1">
                     <div class="item-name-1 col-lg-5">{{ match.joueur1.prenom }} {{ match.joueur1.nom}} (Rank {{ match.joueur1.rang }})</div>

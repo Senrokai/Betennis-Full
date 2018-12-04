@@ -2,13 +2,22 @@
 
 angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'MatchDataService', function ($scope, $state, MatchDataService) {
     $scope.listeMatch = null;
+    $scope.listeMatchFiltre = null;
     $scope.ready = false;
+    $scope.activeFilter = 0;
+    $scope.aucunMatchTrouve = true;
 
     MatchDataService.GetData().then(function (result) {
         $scope.listeMatch = result;
+        $scope.listeMatchFiltre = $scope.listeMatch;
         delete $scope.listeMatch.$promise;
         delete $scope.listeMatch.$resolved;
         localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
+        console.log($scope.listeMatch[0]);
+        if($scope.listeMatch.length > 0)
+        {
+            $scope.aucunMatchTrouve = false;
+        }
     }, function (error) {
         console.log(error);
     });
@@ -48,6 +57,94 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
             "match": match
         });
     }
+
+    $scope.filterButtonClickProcess = function(filterId)
+    {
+        $scope.activeFilter = filterId;
+        switch($scope.activeFilter)
+        {
+            // Match en cours.
+            case 0:
+                $scope.filterCurrentMatch();
+                break;
+            // Match à venir.
+            case 1:
+                $scope.filterFutureMatch();
+                break;
+            // Match terminés.
+            case 2:
+                $scope.filterEndedMatch();
+                break;
+            default:
+        }
+    }
+
+    $scope.filterCurrentMatch = function()
+    {
+        $scope.listeMatchFiltre = [];
+
+        $scope.listeMatch.forEach(function(match){
+            if(match.pointage.final == false && match.temps_partie > 0)
+            {
+                $scope.listeMatchFiltre.push(match);
+            }
+        });
+
+        if($scope.listeMatchFiltre.length > 0)
+        {
+            $scope.aucunMatchTrouve = false;
+        }
+        else
+        {
+            $scope.aucunMatchTrouve = true;
+        }
+        $scope.$apply();
+    };
+
+    $scope.filterFutureMatch = function()
+    {
+        $scope.listeMatchFiltre = [];
+
+        $scope.listeMatch.forEach(function(match){
+            if(match.pointage.final == false && match.temps_partie == 0)
+            {
+                $scope.listeMatchFiltre.push(match);
+            }
+        });
+
+        if($scope.listeMatchFiltre.length > 0)
+        {
+            $scope.aucunMatchTrouve = false;
+        }
+        else
+        {
+            $scope.aucunMatchTrouve = true;
+        }
+        $scope.$apply();
+    };
+
+    $scope.filterEndedMatch = function()
+    {
+        $scope.listeMatchFiltre = [];
+
+        $scope.listeMatch.forEach(function(match){
+            if(match.pointage.final == true)
+            {
+                $scope.listeMatchFiltre.push(match);
+            }
+        });
+
+        if($scope.listeMatchFiltre.length > 0)
+        {
+            $scope.aucunMatchTrouve = false;
+        }
+        else
+        {
+            $scope.aucunMatchTrouve = true;
+        }
+        console.log($scope.listeMatchFiltre);
+        $scope.$apply();
+    };
 
 }]);
 
