@@ -69,11 +69,12 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         }
     };
 
-    $scope.goToMatchDetail = function (idMatch) {
+    $scope.goToMatchDetail = function (idMatchFiltre) {
         //let match = angular.toJson($scope.listeMatch[idMatch]);
         disableTimer();
 
-        let match = angular.toJson($scope.listeMatchFiltre[idMatch]);
+        let match = angular.toJson($scope.listeMatchFiltre[idMatchFiltre]);
+        let idMatch = $scope.listeMatch.indexOf($scope.listeMatchFiltre[idMatchFiltre]);
         $state.go("suivimatch", {
             "id": idMatch,
             "match": match
