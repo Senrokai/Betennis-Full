@@ -509,3 +509,9 @@
     margin: 15px auto;
   }
 }
+
+@media screen and (max-width: 900px) {
+    .home-title {
+
+    }
+}

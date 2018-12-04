@@ -1,11 +1,13 @@
 'use strict';
 
-angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'MatchDataService', function ($scope, $state, MatchDataService) {
+angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'MatchDataService', '$stateParams', function ($scope, $state, MatchDataService, $stateParams) {
     $scope.listeMatch = null;
     $scope.listeMatchFiltre = null;
     $scope.ready = false;
-    $scope.activeFilter = 0;
+    $scope.activeFilter = angular.fromJson($stateParams.idFilter);
     $scope.aucunMatchTrouve = true;
+
+
 
     MatchDataService.GetData().then(function (result) {
         $scope.listeMatch = result;
@@ -18,9 +20,13 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         {
             $scope.aucunMatchTrouve = false;
         }
+
+        $scope.filterButtonClickProcess($scope.activeFilter);
     }, function (error) {
         console.log(error);
     });
+
+
 
     $scope.convertTime = function (timeInSeconds) {
         let nbHours = Math.floor(timeInSeconds / 3600);
@@ -77,7 +83,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
                 break;
             default:
         }
-    }
+    };
 
     $scope.filterCurrentMatch = function()
     {
@@ -98,7 +104,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         {
             $scope.aucunMatchTrouve = true;
         }
-        $scope.$apply();
+
     };
 
     $scope.filterFutureMatch = function()
@@ -120,7 +126,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         {
             $scope.aucunMatchTrouve = true;
         }
-        $scope.$apply();
+
     };
 
     $scope.filterEndedMatch = function()
@@ -143,7 +149,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
             $scope.aucunMatchTrouve = true;
         }
         console.log($scope.listeMatchFiltre);
-        $scope.$apply();
+
     };
 
 }]);

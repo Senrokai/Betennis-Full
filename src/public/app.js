@@ -10,11 +10,15 @@ BetennisApp.config(['$stateProvider', "$urlRouterProvider", function ($stateProv
     $stateProvider
         .state('accueil', {
             url: "/accueil",
-            templateUrl: "pages/accueil/accueil.html"
+            templateUrl: "pages/accueil/accueil.html",
+            controller: "accueilCtrl"
         })
 
         .state('listematch', {
             url: "/listematch",
+            params: {
+                idFilter: 0,
+            },
             templateUrl: "pages/listematch/listematch.html",
             controller: "listeMatchCtrl"
         })

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", 'PariRessources', '$location',
+angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", 'PariRessources', '$location', '$http',
 
-    function ($scope, _, $stateParams, $uibModal, PariRessources, $location) {
+    function ($scope, _, $stateParams, $uibModal, PariRessources, $location, $http) {
         $scope.match = angular.fromJson($stateParams.match);
         if ($scope.match === null) {
             $scope.match = angular.fromJson(localStorage.getItem("liste-match"))[$stateParams.id];
@@ -129,7 +129,10 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
 
     $scope.sendBet = function()
     {
-        PariRessources.placerPari($scope.matchId, $scope.playerToBet, $scope.betValue).then(
+        let url = 'api/parties/' + $scope.matchId + '/paris/' + $scope.playerToBet + '/' + $scope.betValue;
+        $http.put(url);
+        /*
+        PariRessources.placerPari({id:$scope.matchId, joueur:$scope.playerToBet, montant:$scope.betValue}).$promise.then(
             function(){
                 console.log("success");
             },
@@ -137,5 +140,6 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
                 console.log("error");
             }
         );
+        */
     };
 }]);
