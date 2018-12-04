@@ -8,25 +8,26 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
     $scope.aucunMatchTrouve = true;
 
 
+    $scope.refreshPage = function()
+    {
+        MatchDataService.GetData().then(function (result) {
+            $scope.listeMatch = result;
+            $scope.listeMatchFiltre = $scope.listeMatch;
+            delete $scope.listeMatch.$promise;
+            delete $scope.listeMatch.$resolved;
+            localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
+            console.log($scope.listeMatch[0]);
+            if($scope.listeMatch.length > 0)
+            {
+                $scope.aucunMatchTrouve = false;
+            }
 
-    MatchDataService.GetData().then(function (result) {
-        $scope.listeMatch = result;
-        $scope.listeMatchFiltre = $scope.listeMatch;
-        delete $scope.listeMatch.$promise;
-        delete $scope.listeMatch.$resolved;
-        localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
-        console.log($scope.listeMatch[0]);
-        if($scope.listeMatch.length > 0)
-        {
-            $scope.aucunMatchTrouve = false;
-        }
-
-        $scope.filterButtonClickProcess($scope.activeFilter);
-    }, function (error) {
-        console.log(error);
-    });
-
-
+            $scope.filterButtonClickProcess($scope.activeFilter);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    $scope.refreshPage();
 
     $scope.convertTime = function (timeInSeconds) {
         let nbHours = Math.floor(timeInSeconds / 3600);
