@@ -8,17 +8,13 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         if ($scope.match === null) {
             $scope.match = angular.fromJson(localStorage.getItem("liste-match"))[$stateParams.id];
         }
-        if($scope.match.pointage.manches[0] == 0 && $scope.match.pointage.manches[1] == 0)
-        {
-            $scope.betButtonDisabled = false;
-        }
-        else
-        {
-            $scope.betButtonDisabled = true;
-        }
+
+
         $scope.betValue = 0;
         $scope.modalInstance = null;
         $scope.playerToBet = 0;
+
+        console.log($scope.match);
 
     $scope.refreshPage = function()
     {
@@ -29,12 +25,43 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
             delete $scope.listeMatch.$promise;
             delete $scope.listeMatch.$resolved;
             localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
-
+            $scope.refreshBet();
 
         }, function (error) {
             console.log(error);
         });
     };
+
+    $scope.refreshBet = function()
+    {
+        if($scope.match.pointage.manches[0] == 0 && $scope.match.pointage.manches[1] == 0 && $scope.match.userParis.joueur == null)
+        {
+            $scope.betButtonDisabled = false;
+            $scope.paris = "Veuillez parier pour connaitre votre gain potentiel.";
+        }
+        else if($scope.match.userParis.joueur != null)
+        {
+            $scope.betButtonDisabled = true;
+
+            let joueurParis = "unknown";
+            if($scope.match.userParis.joueur == 0)
+            {
+                joueurParis = $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
+            }
+            else if($scope.match.userParis.joueur == 1)
+            {
+                joueurParis = $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
+            }
+            $scope.paris = "Vous avez parier " + $scope.match.userParis.montant + " sur le joueur " + joueurParis + ".";
+
+        }
+        else
+        {
+            $scope.betButtonDisabled = true;
+            $scope.paris = "Vous ne pouvez plus parier sur ce match, une manche a déjà été complétée.";
+        }
+    };
+    $scope.refreshBet();
 
         $scope.openBetModalPlayer1 = function (size, parentSelector) {
 
@@ -148,9 +175,11 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
             let url = 'api/parties/' + $stateParams.id + '/paris/' + $scope.playerToBet + '/' + $scope.betValue;
             $http.put(url, null).then(function (res) {
                     console.log(res);
+                    $scope.refreshPage();
                 },
                 function (error) {
                     console.log(error);
+                    $scope.refreshPage();
                 }
             );
         };
