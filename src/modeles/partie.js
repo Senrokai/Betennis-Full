@@ -16,6 +16,10 @@ class Partie {
         this.paris = {
             montants: [0, 0],
             parieurs: [0, 0]
+        };
+        this.userParis = {
+            joueur: null,
+            montant: null
         }
     }
 
@@ -57,11 +61,15 @@ class Partie {
     }
 
     parier(somme, joueur) {
+        this.paris.montants[joueur] += somme;
+        this.paris.parieurs[joueur] += 1;
+    }
+
+    userPari(somme, joueur) {
         if (this.pointage.manches[0] <= 1 && this.pointage.manches[1] <= 1) {
-            this.paris.montants[joueur] += somme;
-            this.paris.parieurs[joueur] += 1;
-        }
-        else {
+            this.userParis.joueur = joueur;
+            this.userParis.montant = somme;
+        } else {
             return 0;
         }
     }
