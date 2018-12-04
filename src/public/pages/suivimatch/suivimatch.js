@@ -60,6 +60,28 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
             $scope.betButtonDisabled = true;
             $scope.paris = "Vous ne pouvez plus parier sur ce match, une manche a déjà été complétée.";
         }
+
+        if($scope.match.pointage.final == true)
+        {
+            if(($scope.match.pointage.manches[0] == 2 && $scope.match.userParis.joueur == 0) || ($scope.match.pointage.manches[1] == 2 && $scope.match.userParis.joueur == 1))
+            {
+                $scope.paris = "Le match est terminé, vous avez gagné votre paris sur ";
+
+            }
+            else
+            {
+                $scope.paris = "Le match est terminé, vous avez perdu votre paris sur ";
+            }
+
+            if($scope.match.userParis.joueur == 0)
+            {
+                $scope.paris = $scope.paris + $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
+            }
+            else
+            {
+                $scope.paris = $scope.paris + $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
+            }
+        }
     };
     $scope.refreshBet();
 
