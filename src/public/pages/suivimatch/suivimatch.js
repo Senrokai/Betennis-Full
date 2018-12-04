@@ -7,6 +7,14 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         if ($scope.match === null) {
             $scope.match = angular.fromJson(localStorage.getItem("liste-match"))[$stateParams.id];
         }
+        if($scope.match.pointage.manches[0] == 0 && $scope.match.pointage.manches[1] == 0)
+        {
+            $scope.betButtonDisabled = false;
+        }
+        else
+        {
+            $scope.betButtonDisabled = true;
+        }
         $scope.urlParams = $location.path().split('/');
         $scope.matchId = $scope.urlParams[$scope.urlParams.length - 1];
         $scope.betValue = 0;

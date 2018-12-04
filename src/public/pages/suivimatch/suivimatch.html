@@ -13,7 +13,7 @@
                     <div class="row item-detail-row-2">
                         <div class="col-lg-2"></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[0] >= 2" class="item-detail-player-1-set"></div></div>
-                        <div class="item-detail-bet-button col-lg-6"><button ng-click="openBetModalPlayer1('sm', null)" class="btn btn-primary">Parier sur ce joueur</button></div>
+                        <div class="item-detail-bet-button col-lg-6"><button ng-disabled="betButtonDisabled" ng-click="openBetModalPlayer1('sm', null)" class="btn btn-primary">Parier sur ce joueur</button></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.constestation[0] >= 1" class="item-detail-player-1-cont"></div></div>
                         <div class="col-lg-2"></div>
                     </div>
@@ -65,7 +65,7 @@
                     <div class="row item-detail-row-2">
                         <div class="col-lg-2"></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.pointage.manches[1] >= 1" class="item-detail-player-1-set"></div></div>
-                        <div class="item-detail-bet-button col-lg-6"><button ng-click="openBetModalPlayer2('sm', null)" class="btn btn-primary">Parier sur ce joueur</button></div>
+                        <div class="item-detail-bet-button col-lg-6"><button ng-disabled="betButtonDisabled" ng-click="openBetModalPlayer2('sm', null)" class="btn btn-primary">Parier sur ce joueur</button></div>
                         <div class="item-detail-image-container col-lg-1"><div ng-if="match.constestation[0] >= 1" class="item-detail-player-1-cont"></div></div>
                         <div class="col-lg-2"></div>
                     </div>
