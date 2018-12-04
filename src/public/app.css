@@ -526,18 +526,51 @@
     .home-title {
         font-size: 3em;
     }
-    .item-detail-container {
 
-    }
-
-
-
-
-    .item-detail-row-1 {
-
-    }
     .col-lg-6, .col-lg-4 , col-lg-2 {
-        width: auto !important;
+        /*width: auto !important;*/
+    }
+
+    .item-row-menu .col-lg-10 {
+        width: 80%;
+    }
+    .item-row-menu .col-lg-2 {
+        width: 20%;
+    }
+    .item-row-menu .item-detail-refresh-button {
+        width: 50px;
+        height: 50px;
+        float: right;
+        height: auto !important;
+    }
+    .item-row-1 .col-lg-5 {
+        width: 40%;
+    }
+    .item-row-1 .item-name-1, .item-row-1 .item-name-2 {
+        font-size: 20px;
+    }
+    .item-row-1 .col-lg-2 {
+        width: 20%;
+        padding: 0;
+    }
+    .item-row-2 .col-lg-4 {
+        width: 33%;
+    }
+    .item-row-3 .col-lg-3 {
+        width: 25%;
+    }
+    .item-row-4 .col-lg-4 {
+        width: 33%;
+    }
+    .item-row-5 .col-lg-3 {
+        width: 25%;
+    }
+    .item-row-6 .col-lg-4 {
+        width: 33%;
+    }
+
+    .button-container .col-lg-4 {
+        width: 33%;
     }
 
     .item-detail-row-1 .col-lg-6, .item-detail-row-1 .col-lg-4 {
@@ -614,6 +647,215 @@
     .item-detail-row-1 .item-detail-gain-label {
         font-size: 1.3em;
     }
+}
+
+@media screen and (max-width: 850px) {
+    .item-container {
+        width: 600px;
+    }
+    .item-background {
+        background-size: contain;
+        background-position: top;
+    }
+    .no-match-found-container{
+        width: 600px;
+    }
+    .no-match-found-label {
+        font-size: 20px !important;
+    }
+    .item-row-menu {
+        width: 100%;
+    }
+    .item-row-menu .col-lg-10 {
+        width: 0%;
+    }
+    .item-row-menu .col-lg-2 {
+        width: 600px;
+    }
+    .item-row-menu .item-detail-refresh-button {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .button-container {
+        width: 600px;
+    }
+    .button-container .col-lg-4 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .item-row-1 {
+        padding-bottom: 0;
+        height: 40px;
+    }
+    .item-row-1 .item-name-1, .item-row-1 .item-name-2, .item-row-1 .item-vs {
+        font-size: 15px;
+    }
+    .item-row-1 .item-vs p {
+        margin-bottom: 0;
+    }
+
+    .item-row-2 {
+        height: 40px;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .item-row-2 .item-serv-1 {
+        margin-left: 20px;
+    }
+
+    .item-row-2 .item-serv-2 {
+        margin-right: 20px;
+    }
+
+    .item-row-2 .item-point-label {
+        font-size: 25px;
+    }
+
+    .item-row-3 {
+        padding: 0;
+        height: 50px;
+    }
+
+    .item-row-4 {
+        height: 40px;
+        padding: 0;
+    }
+
+    .item-row-4 .item-game-label {
+        font-size: 25px;
+    }
+    .item-row-6 {
+        height: 40px;
+        padding-top: 0;
+        padding-bottom: 0px;
+    }
+    .item-row-6 .item-time {
+        font-size: 15px;
+    }
+    .item-row-6 .item-court {
+        font-size: 15px;
+    }
+    .item-row-6 .item-button-detail {
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .item-container {
+        width: 400px;
+    }
+    /*ICI*/
+    .no-match-found-container{
+        width: 400px;
+    }
+    .no-match-found-label {
+        font-size: 15px !important;
+    }
+    .item-row-menu {
+        width: 100%;
+    }
+    .item-row-menu .col-lg-10 {
+        width: 0%;
+    }
+    .item-row-menu .col-lg-2 {
+        width: 400px;
+    }
+    .item-row-menu .item-detail-refresh-button {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .button-container {
+        width: 400px;
+    }
+    .button-container .col-lg-4 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .item-row-1 {
+        height: 25px;
+        margin: 0;
+        padding-top: 5px;
+    }
+    .item-row-1 .item-name-1, .item-row-1 .item-name-2, .item-row-1 .item-vs {
+        font-size: 10px;
+    }
+
+
+    .item-row-2 {
+        height: 38px;
+        padding: 0;
+        margin-top: 5px;
+    }
+
+    .item-row-2 .item-serv-1 {
+        margin-left: 20px;
+    }
+
+    .item-row-2 .item-serv-2 {
+        margin-right: 20px;
+    }
+
+    .item-row-2 .item-point-label {
+        font-size: 25px;
+    }
+
+    .item-row-3 {
+        padding: 0;
+        height: 20px;
+    }
+
+    .item-row-3 .item-point {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .item-row-4 {
+        height: 25px;
+        padding: 0;
+    }
+
+    .item-row-4 .item-game-label {
+        font-size: 25px;
+    }
+
+    .item-row-5 {
+        height: 35px;
+    }
+    .item-row-5 p {
+        margin: 0;
+    }
+    .item-row-5 .item-set-player-1, .item-row-5 .item-set-player-2 {
+        font-size: 25px;
+    }
+
+    .item-row-6 {
+        height: 30px;
+        padding-top: 0;
+        padding-bottom: 0px;
+        margin-top: 15px;
+    }
+    .item-row-6 p {
+        font-size: 12px;
+    }
+    .item-row-6 .item-time {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+    }
+    .item-row-6 .item-court {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+    }
+    .item-row-6 .item-button-detail {
+        height: 80%;
+        width: 100%;
+        font-size: 8px;
+    }
+
 }
 
 @media screen and (max-width: 730px) {

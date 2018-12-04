@@ -38,7 +38,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         });
     };
     $scope.refreshPage();
-    autoRefreshTimer = $interval( function(){ $scope.refreshPage(); }, 5000);
+    //autoRefreshTimer = $interval( function(){ $scope.refreshPage(); }, 5000);
 
 
     $scope.convertTime = function (timeInSeconds) {
