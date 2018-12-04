@@ -22,9 +22,17 @@ const demarrer = function () {
 };
 
 function demarrerPartie(partie) {
-    for (var i = 0; i < 180000 + Math.floor(Math.random() * 40000); i++) {
-        partie.parier(Math.floor(Math.random() * 100), Math.floor(Math.random() * 2));
+    let joueur1 = Math.floor(Math.random() * 10000);
+    let joueur2 = Math.floor(Math.random() * 10000);
+
+    for (var i = 0; i < joueur1; i++) {
+        partie.parier(Math.floor(Math.random() * 100), 0);
     }
+
+    for (var i = 0; i < joueur2; i++) {
+        partie.parier(Math.floor(Math.random() * 100), 1);
+    }
+
     const timer = setInterval(function () {
         partie.jouerTour();
         if (partie.estTerminee()) {

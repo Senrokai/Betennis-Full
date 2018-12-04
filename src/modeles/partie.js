@@ -90,7 +90,9 @@ class Partie {
             'serveur': this.joueur_au_service,
             'vitesse_dernier_service': this.vitesse_dernier_service,
             'nombre_coup_dernier_echange': this.nombre_coup_dernier_echange,
-            'constestation': this.constestation
+            'constestation': this.constestation,
+            'paris': this.paris,
+            'userParis': this.userParis
         };
     }
 }
