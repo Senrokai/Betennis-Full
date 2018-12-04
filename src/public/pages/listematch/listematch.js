@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'MatchDataService', '$stateParams', '$interval', function ($scope, $state, MatchDataService, $stateParams, $interval) {
+angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'MatchDataService', '$stateParams', '$interval', '$window', function ($scope, $state, MatchDataService, $stateParams, $interval, $window) {
     $scope.listeMatch = null;
     $scope.listeMatchFiltre = null;
     $scope.ready = false;
@@ -168,6 +168,11 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         console.log($scope.listeMatchFiltre);
 
     };
+
+    $scope.goToPreviousPage = function()
+    {
+        $window.history.back();
+    }
 
 }]);
 

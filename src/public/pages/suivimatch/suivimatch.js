@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", '$location', '$http', 'MatchDataService', '$interval',
+angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", '$location', '$http', 'MatchDataService', '$interval', '$window',
 
-    function ($scope, _, $stateParams, $uibModal,  $location, $http, MatchDataService, $interval) {
+    function ($scope, _, $stateParams, $uibModal,  $location, $http, MatchDataService, $interval, $window) {
 
         $scope.match = angular.fromJson($stateParams.match);
         if ($scope.match === null) {
@@ -223,4 +223,9 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
                 }
             );
         };
+
+        $scope.goToPreviousPage = function()
+        {
+            $window.history.back();
+        }
     }]);

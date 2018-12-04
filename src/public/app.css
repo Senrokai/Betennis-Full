@@ -516,6 +516,12 @@
 }
 
 /* MEDIA QUERIES */
+@media screen and (max-width: 1200px) {
+    .home-button {
+        font-size: 12px;
+    }
+}
+
 @media screen and (max-width: 970px) {
 
   .home-row{
