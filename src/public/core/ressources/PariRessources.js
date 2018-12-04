@@ -8,7 +8,7 @@ angular.module("Betennis").factory('PariRessources', ['$resource', function ($re
             },
             placerPari: {
                 url: 'api/parties/:id/paris/:joueur/:montant',
-                method: 'POST'
+                method: 'PUT'
             }
         }
     );
