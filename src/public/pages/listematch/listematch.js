@@ -1,12 +1,22 @@
 'use strict';
 
-angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'MatchDataService', '$stateParams', function ($scope, $state, MatchDataService, $stateParams) {
+angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'MatchDataService', '$stateParams', '$interval', function ($scope, $state, MatchDataService, $stateParams, $interval) {
     $scope.listeMatch = null;
     $scope.listeMatchFiltre = null;
     $scope.ready = false;
     $scope.activeFilter = angular.fromJson($stateParams.idFilter);
     $scope.aucunMatchTrouve = true;
+    var autoRefreshTimer;
 
+    function disableTimer() {
+        console.log('[listematch] Timer disabled');
+        $interval.cancel(autoRefreshTimer);
+        autoRefreshTimer = undefined;
+    }
+
+    $scope.$on("$destroy", function( event ) {
+        disableTimer();
+    });
 
     $scope.refreshPage = function()
     {
@@ -28,6 +38,8 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         });
     };
     $scope.refreshPage();
+    autoRefreshTimer = $interval( function(){ $scope.refreshPage(); }, 5000);
+
 
     $scope.convertTime = function (timeInSeconds) {
         let nbHours = Math.floor(timeInSeconds / 3600) % 60;
@@ -59,11 +71,13 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
 
     $scope.goToMatchDetail = function (idMatch) {
         //let match = angular.toJson($scope.listeMatch[idMatch]);
+        disableTimer();
+
         let match = angular.toJson($scope.listeMatchFiltre[idMatch]);
         $state.go("suivimatch", {
             "id": idMatch,
             "match": match
-        });
+        }, {reload: true});
     }
 
     $scope.filterButtonClickProcess = function(filterId)

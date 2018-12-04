@@ -1,14 +1,13 @@
 'use strict';
 
-angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", '$location', '$http', 'MatchDataService',
+angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateParams", "$uibModal", '$location', '$http', 'MatchDataService', '$interval',
 
-    function ($scope, _, $stateParams, $uibModal,  $location, $http, MatchDataService) {
+    function ($scope, _, $stateParams, $uibModal,  $location, $http, MatchDataService, $interval) {
 
         $scope.match = angular.fromJson($stateParams.match);
         if ($scope.match === null) {
             $scope.match = angular.fromJson(localStorage.getItem("liste-match"))[$stateParams.id];
         }
-
 
         $scope.betValue = 0;
         $scope.modalInstance = null;
@@ -16,74 +15,87 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
 
         console.log($scope.match);
 
-    $scope.refreshPage = function()
-    {
+        var autoRefreshTimer;
 
-        MatchDataService.GetData().then(function (result) {
-            $scope.listeMatch = result;
-            $scope.match = $scope.listeMatch[$stateParams.id];
-            delete $scope.listeMatch.$promise;
-            delete $scope.listeMatch.$resolved;
-            localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
-            $scope.refreshBet();
+        function disableTimer() {
+            console.log('[suivimatch] Timer disabled');
+            $interval.cancel(autoRefreshTimer);
+            autoRefreshTimer = undefined;
+        }
 
-        }, function (error) {
-            console.log(error);
+        $scope.$on("$destroy", function( event ) {
+            disableTimer();
         });
-    };
 
-    $scope.refreshBet = function()
-    {
-        if($scope.match.pointage.manches[0] === 0 && $scope.match.pointage.manches[1] == 0 && $scope.match.userParis.joueur == null)
+        $scope.refreshPage = function()
         {
-            $scope.betButtonDisabled = false;
-            $scope.paris = "Veuillez parier pour connaitre votre gain potentiel.";
-        }
-        else if($scope.match.userParis.joueur != null)
-        {
-            $scope.betButtonDisabled = true;
+            MatchDataService.GetData().then(function (result) {
+                $scope.listeMatch = result;
+                $scope.match = $scope.listeMatch[$stateParams.id];
+                delete $scope.listeMatch.$promise;
+                delete $scope.listeMatch.$resolved;
+                localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
+                $scope.refreshBet();
 
-            let joueurParis = "unknown";
-            if($scope.match.userParis.joueur === 0)
+            }, function (error) {
+                console.log(error);
+            });
+        };
+        autoRefreshTimer = $interval( function(){ $scope.refreshPage(); }, 5000);
+
+
+        $scope.refreshBet = function()
+        {
+            if($scope.match.pointage.manches[0] === 0 && $scope.match.pointage.manches[1] == 0 && $scope.match.userParis.joueur == null)
             {
-                joueurParis = $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
+                $scope.betButtonDisabled = false;
+                $scope.paris = "Veuillez parier pour connaitre votre gain potentiel.";
             }
-            else if($scope.match.userParis.joueur === 1)
+            else if($scope.match.userParis.joueur != null)
             {
-                joueurParis = $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
-            }
-            $scope.paris = "Vous avez parier " + $scope.match.userParis.montant + " sur le joueur " + joueurParis + ".";
+                $scope.betButtonDisabled = true;
 
-        }
-        else
-        {
-            $scope.betButtonDisabled = true;
-            $scope.paris = "Vous ne pouvez plus parier sur ce match, une manche a déjà été complétée.";
-        }
-
-        if($scope.match.pointage.final === true)
-        {
-            if(($scope.match.pointage.manches[0] === 2 && $scope.match.userParis.joueur == 0) || ($scope.match.pointage.manches[1] == 2 && $scope.match.userParis.joueur == 1))
-            {
-                $scope.paris = "Le match est terminé, vous avez gagné votre paris sur ";
+                let joueurParis = "unknown";
+                if($scope.match.userParis.joueur === 0)
+                {
+                    joueurParis = $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
+                }
+                else if($scope.match.userParis.joueur === 1)
+                {
+                    joueurParis = $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
+                }
+                $scope.paris = "Vous avez parier " + $scope.match.userParis.montant + " sur le joueur " + joueurParis + ".";
 
             }
             else
             {
-                $scope.paris = "Le match est terminé, vous avez perdu votre paris sur ";
+                $scope.betButtonDisabled = true;
+                $scope.paris = "Vous ne pouvez plus parier sur ce match, une manche a déjà été complétée.";
             }
 
-            if($scope.match.userParis.joueur === 0)
+            if($scope.match.pointage.final === true)
             {
-                $scope.paris = $scope.paris + $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
+                if(($scope.match.pointage.manches[0] === 2 && $scope.match.userParis.joueur == 0) || ($scope.match.pointage.manches[1] == 2 && $scope.match.userParis.joueur == 1))
+                {
+                    $scope.paris = "Le match est terminé, vous avez gagné votre paris sur ";
+
+                }
+                else
+                {
+                    $scope.paris = "Le match est terminé, vous avez perdu votre paris sur ";
+                }
+
+                if($scope.match.userParis.joueur === 0)
+                {
+                    $scope.paris = $scope.paris + $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
+                }
+                else
+                {
+                    $scope.paris = $scope.paris + $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
+                }
             }
-            else
-            {
-                $scope.paris = $scope.paris + $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
-            }
-        }
-    };
-    $scope.refreshBet();
+        };
+        $scope.refreshBet();
 
         $scope.openBetModalPlayer1 = function (size, parentSelector) {
 
