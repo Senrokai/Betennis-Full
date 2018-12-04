@@ -12,7 +12,7 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         $scope.betValue = 0;
         $scope.modalInstance = null;
         $scope.playerToBet = 0;
-        $scope.gainPotentiel = 10;
+        $scope.gainPotentiel = 0;
         $scope.betRatio = 1.75;
 
         console.log($scope.match);
@@ -48,23 +48,24 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
 
         $scope.refreshBet = function()
         {
-            if($scope.match.pointage.manches[0] == 0 && $scope.match.pointage.manches[1] == 0 && $scope.match.userParis.joueur == null)
+            if($scope.match.pointage.manches[0] === 0 && $scope.match.pointage.manches[1] === 0 && $scope.match.userParis.joueur === null)
             {
                 $scope.betButtonDisabled = false;
                 $scope.paris = "Veuillez parier pour connaitre votre gain potentiel.";
             }
-            else if($scope.match.userParis.joueur != null)
+            else if($scope.match.userParis.joueur !== null)
             {
                 $scope.betButtonDisabled = true;
                 $scope.betValue = $scope.match.userParis.montant;
                 $scope.gainPotentiel = $scope.betValue * $scope.betRatio;
 
                 let joueurParis = "unknown";
-                if($scope.match.userParis.joueur === 0)
+                console.log($scope.match.userParis.joueur);
+                if($scope.match.userParis.joueur == 0)
                 {
                     joueurParis = $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
                 }
-                else if($scope.match.userParis.joueur === 1)
+                else if($scope.match.userParis.joueur == 1)
                 {
                     joueurParis = $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
                 }
@@ -78,21 +79,25 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
 
             if($scope.match.pointage.final === true)
             {
-                if(($scope.match.pointage.manches[0] === 2 && $scope.match.userParis.joueur == 0) || ($scope.match.pointage.manches[1] == 2 && $scope.match.userParis.joueur == 1))
+                if(($scope.match.pointage.manches[0] === 2 && $scope.match.userParis.joueur === 0) || ($scope.match.pointage.manches[1] === 2 && $scope.match.userParis.joueur === 1))
                 {
                     $scope.paris = "Le match est terminé, vous avez gagné votre paris sur ";
 
                 }
-                else
+                else if(($scope.match.pointage.manches[0] < 2 && $scope.match.userParis.joueur === 0) || ($scope.match.pointage.manches[1] < 2 && $scope.match.userParis.joueur === 1))
                 {
                     $scope.paris = "Le match est terminé, vous avez perdu votre paris sur ";
+                }
+                else if($scope.match.userParis.joueur === null)
+                {
+                    $scope.paris = "Le match est terminé, vous n'avez parié sur personne.";
                 }
 
                 if($scope.match.userParis.joueur === 0)
                 {
                     $scope.paris = $scope.paris + $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
                 }
-                else
+                else if($scope.match.userParis.joueur === 1)
                 {
                     $scope.paris = $scope.paris + $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
                 }
