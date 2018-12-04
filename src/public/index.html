@@ -51,5 +51,31 @@
 <script src="pages/accueil/accueil.js"></script>
 <script src="pages/listematch/listematch.js"></script>
 <script src="pages/suivimatch/suivimatch.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+    function nofitificationAPI(msg) {
+        if (!("Notification" in window)) {
+            alert("Ce navigateur ne supporte pas les notifications desktop");
+        } else if (Notification.permission === "granted") {                     // If usr OK
+            var notification = new Notification(msg);
+        } else if (Notification.permission !== 'denied') {                      // If not ask
+            Notification.requestPermission(function (permission) {
+                if(!('permission' in Notification)) {
+                    Notification.permission = permission;
+                }
+                if (permission === "granted") {
+                    var notification = new Notification(msg);
+                }
+            });
+        }
+    }
+
+    var socket = io();
+    socket.on('matchEnded', function(msg){
+        nofitificationAPI(msg.msg);
+    });
+
+</script>
 </body>
 </html>
