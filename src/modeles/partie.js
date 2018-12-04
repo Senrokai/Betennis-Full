@@ -1,7 +1,7 @@
 const Pointage = require('./pointage.js');
 
 class Partie {
-    constructor(joueur1, joueur2, terrain, tournoi, heureDebut, tickDebut) {
+    constructor(joueur1, joueur2, terrain, tournoi, heureDebut, tickDebut, io) {
         this.joueurs = [joueur1, joueur2];
         this.terrain = terrain;
         this.tournoi = tournoi;
@@ -20,24 +20,28 @@ class Partie {
         this.userParis = {
             joueur: null,
             montant: null
-        }
+        };
+        this.io = io;
     }
 
     jouerTour() {
         let contestationReussi = false;
         if ((Math.random() * 100) < 3) { // 3% de contestation
+            const contestant = Math.floor(Math.random() * 2);
             if (!Partie.contester()) {
-                const contestant = Math.floor(Math.random() * 2);
                 this.constestation[contestant] = Math.max(0, this.constestation[contestant] - 1);
+                this.io.sockets.emit('contestation',{msg:this.joueurs[contestant].nom + ' échoue sa contestation.'});
                 console.log('contestation echouee');
             } else {
                 contestationReussi = true;
+                this.io.sockets.emit('contestation',{msg:this.joueurs[contestant].nom + ' réussi sa contestation.'});
                 console.log('contestation reussie');
             }
         }
 
         if (!contestationReussi) {
-            this.pointage.ajouterPoint(Math.floor(Math.random() * 2));
+            var winner = Math.floor(Math.random() * 2);
+            this.pointage.ajouterPoint(winner);
         }
         this.temps_partie += Math.floor(Math.random() * 60); // entre 0 et 60 secondes entre chaque point
         this.vitesse_dernier_service = Math.floor(Math.random() * (250 - 60 + 1)) + 60; // entre 60 et 250 km/h
@@ -53,6 +57,8 @@ class Partie {
     }
 
     nouvelleManche() {
+        this.io.sockets.emit('nouvelleManche',{msg:'Manche terminée : ' + this.joueurs[0].nom + ' (' + this.pointage.manches[0] + ') / ' + 
+                                                                          this.joueurs[1].nom + ' (' + this.pointage.manches[1] + ')'});
         this.constestation = [3, 3];
     }
 

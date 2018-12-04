@@ -6,14 +6,12 @@ const modificateurVitesse = 10;//Math.min(process.argv[2], 1);
 
 const listePartie = [];
 
-listePartie.push(new Partie(new Joueur('Albert', 'Ramos', 28, 56, 'Espagne'), new Joueur('Milos', 'Raonic', 28, 16, 'Canada'), '1', 'Hale', '12h30', 0));
-listePartie.push(new Partie(new Joueur('Andy', 'Murray', 28, 132, 'Angleterre'), new Joueur('Andy', 'Roddick', 36, 1000, 'États-Unis'), '2', 'Hale', '13h00', 30));
-
 const demarrer = function (io) {
-    io.on('connection', function(socket){
-        console.log('a user connected');
-        opSocket = socket;
-    });
+    opSocket = io;
+
+    listePartie.push(new Partie(new Joueur('Albert', 'Ramos', 28, 56, 'Espagne'), new Joueur('Milos', 'Raonic', 28, 16, 'Canada'), '1', 'Hale', '12h30', 0, opSocket));
+    listePartie.push(new Partie(new Joueur('Andy', 'Murray', 28, 132, 'Angleterre'), new Joueur('Andy', 'Roddick', 36, 1000, 'États-Unis'), '2', 'Hale', '13h00', 30, opSocket));
+
     let tick = 0;
     setInterval(function () {
         for (const partie in listePartie) {
@@ -41,11 +39,8 @@ function demarrerPartie(partie) {
     const timer = setInterval(function () {
         partie.jouerTour();
         if (partie.estTerminee()) {
-
-            if (opSocket !== null) {
-                opSocket.emit('matchEnded',{msg:'La partie ' + partie.joueurs[0].nom + ' vs ' + partie.joueurs[1].nom + ' est terminée.'});
-            }
-
+            opSocket.sockets.emit('matchEnded',{msg:'La partie ' + partie.joueurs[0].nom + '(' + partie.pointage.manches[0] + ') vs ' +
+                                                                   partie.joueurs[1].nom + '(' + partie.pointage.manches[0] + ') est terminée.'});
             clearInterval(timer);
         }
     }, Math.floor(1000 / modificateurVitesse));

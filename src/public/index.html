@@ -75,6 +75,12 @@
     socket.on('matchEnded', function(msg){
         nofitificationAPI(msg.msg);
     });
+    socket.on('nouvelleManche', function(msg){
+        nofitificationAPI(msg.msg);
+    });
+    socket.on('contestation', function(msg){
+        nofitificationAPI(msg.msg);
+    });
 
 </script>
 </body>
