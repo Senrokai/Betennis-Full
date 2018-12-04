@@ -12,6 +12,8 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         $scope.betValue = 0;
         $scope.modalInstance = null;
         $scope.playerToBet = 0;
+        $scope.gainPotentiel = 10;
+        $scope.betRatio = 1.75;
 
         console.log($scope.match);
 
@@ -46,7 +48,7 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
 
         $scope.refreshBet = function()
         {
-            if($scope.match.pointage.manches[0] === 0 && $scope.match.pointage.manches[1] == 0 && $scope.match.userParis.joueur == null)
+            if($scope.match.pointage.manches[0] == 0 && $scope.match.pointage.manches[1] == 0 && $scope.match.userParis.joueur == null)
             {
                 $scope.betButtonDisabled = false;
                 $scope.paris = "Veuillez parier pour connaitre votre gain potentiel.";
@@ -54,6 +56,8 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
             else if($scope.match.userParis.joueur != null)
             {
                 $scope.betButtonDisabled = true;
+                $scope.betValue = $scope.match.userParis.montant;
+                $scope.gainPotentiel = $scope.betValue * $scope.betRatio;
 
                 let joueurParis = "unknown";
                 if($scope.match.userParis.joueur === 0)
@@ -65,7 +69,6 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
                     joueurParis = $scope.match.joueur2.prenom + " " + $scope.match.joueur2.nom;
                 }
                 $scope.paris = "Vous avez parier " + $scope.match.userParis.montant + " sur le joueur " + joueurParis + ".";
-
             }
             else
             {

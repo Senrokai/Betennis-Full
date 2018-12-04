@@ -79,7 +79,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
             "id": idMatch,
             "match": match
         }, {reload: true});
-    }
+    };
 
     $scope.filterButtonClickProcess = function(filterId)
     {
