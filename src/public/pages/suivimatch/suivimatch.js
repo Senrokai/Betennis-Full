@@ -15,8 +15,6 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
         $scope.gainPotentiel = 0;
         $scope.betRatio = 1.75;
 
-        console.log($scope.match);
-
         var autoRefreshTimer;
 
         function disableTimer() {
@@ -60,7 +58,7 @@ angular.module('Betennis').controller('suiviMatchCtrl', ['$scope', '_', "$stateP
                 $scope.gainPotentiel = $scope.betValue * $scope.betRatio;
 
                 let joueurParis = "unknown";
-                console.log($scope.match.userParis.joueur);
+
                 if($scope.match.userParis.joueur == 0)
                 {
                     joueurParis = $scope.match.joueur1.prenom + " " + $scope.match.joueur1.nom;
