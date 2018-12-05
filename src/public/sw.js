@@ -31,7 +31,10 @@ const FILES_TO_CACHE = [
     '/img/tennis-court-item-background-2.png',
     '/img/contestation.png',
     '/img/service-right.png',
-    '/img/service-left.png'
+    '/img/service-left.png',
+    '/img/refresh.png',
+    '/img/back.png',
+    '/img/tennis-court-detail.png'
 ];
 
 self.addEventListener('install', function (event){
