@@ -21,7 +21,7 @@ router.get('/:id/paris', function (req, res, next) {
 router.put('/:id/paris/:joueur/:montant', function (req, res, next) {
     let partie = gen.liste_partie[req.params.id];
     let montant = req.params.montant;
-    let joueur = req.params.joueur;
+    let joueur = gen.liste_partie[req.params.id].joueurs[req.params.joueur];
     if (partie.userPari(montant, joueur) === 0) {
         res.status(403).json({error: "Vous ne pouvez plus parier après la première manche !"});
     }

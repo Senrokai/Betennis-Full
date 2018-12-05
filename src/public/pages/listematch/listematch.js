@@ -38,7 +38,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         });
     };
     $scope.refreshPage();
-    //autoRefreshTimer = $interval( function(){ $scope.refreshPage(); }, 5000);
+    autoRefreshTimer = $interval( function(){ $scope.refreshPage(); }, 5000);
 
 
     $scope.convertTime = function (timeInSeconds) {
@@ -107,7 +107,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         $scope.listeMatchFiltre = [];
 
         $scope.listeMatch.forEach(function(match){
-            if(match.pointage.final == false && match.temps_partie > 0)
+            if(match.pointage.final === false && match.temps_partie > 0)
             {
                 $scope.listeMatchFiltre.push(match);
             }
@@ -129,7 +129,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
         $scope.listeMatchFiltre = [];
 
         $scope.listeMatch.forEach(function(match){
-            if(match.pointage.final == false && match.temps_partie == 0)
+            if(match.pointage.final === false && match.temps_partie === 0)
             {
                 $scope.listeMatchFiltre.push(match);
             }
@@ -157,14 +157,7 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
             }
         });
 
-        if($scope.listeMatchFiltre.length > 0)
-        {
-            $scope.aucunMatchTrouve = false;
-        }
-        else
-        {
-            $scope.aucunMatchTrouve = true;
-        }
+        $scope.aucunMatchTrouve = $scope.listeMatchFiltre.length <= 0;
         console.log($scope.listeMatchFiltre);
 
     };

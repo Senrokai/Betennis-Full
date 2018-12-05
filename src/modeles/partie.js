@@ -28,13 +28,16 @@ class Partie {
         let contestationReussi = false;
         if ((Math.random() * 100) < 3) { // 3% de contestation
             const contestant = Math.floor(Math.random() * 2);
+            const adversaire = contestant === 0 ? 1 : 0;
             if (!Partie.contester()) {
                 this.constestation[contestant] = Math.max(0, this.constestation[contestant] - 1);
-                this.io.sockets.emit('contestation',{msg:this.joueurs[contestant].nom + ' échoue sa contestation.'});
+                this.io.sockets.emit('contestation',{msg:this.joueurs[contestant].nom + ' échoue sa contestation contre '+
+                        this.joueurs[adversaire].nom+'.'});
                 console.log('contestation echouee');
             } else {
                 contestationReussi = true;
-                this.io.sockets.emit('contestation',{msg:this.joueurs[contestant].nom + ' réussi sa contestation.'});
+                this.io.sockets.emit('contestation',{msg:this.joueurs[contestant].nom + ' réussi sa contestation contre '+
+                        this.joueurs[adversaire].nom+'.'});
                 console.log('contestation reussie');
             }
         }
