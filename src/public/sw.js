@@ -23,6 +23,8 @@ const FILES_TO_CACHE = [
     '/pages/listematch/listematch.js',
     '/pages/suivimatch/suivimatch.html',
     '/pages/suivimatch/suivimatch.js',
+    '/pages/accueil/accueil.html',
+    '/pages/accueil/accueil.js',
     'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
     '/img/background.png',
     '/img/finished-icon.png',
