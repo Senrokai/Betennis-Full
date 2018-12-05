@@ -92,7 +92,7 @@ function _fetchAndUpdate(request) {
                     .then(cache => {
 
                         //  We don't want to cache the data that is coming from the service!
-                        if (request.url.includes("api/ListeMatch")) {
+                        if (request.url.includes("api/parties/")) {
                             return cache.put(request, res.clone())
                                 .then(() => {
                                     return res;
