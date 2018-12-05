@@ -54,31 +54,35 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
 
-    function nofitificationAPI(msg) {
+    function nofitificationAPI(msg, body) {
         if (!("Notification" in window)) {
             alert("Ce navigateur ne supporte pas les notifications desktop");
         } else if (Notification.permission === "granted") {                     // If usr OK
-            var notification = new Notification(msg);
+            var notification = new Notification(msg, {
+                body: body
+            });
         } else if (Notification.permission !== 'denied') {                      // If not ask
             Notification.requestPermission(function (permission) {
-                if(!('permission' in Notification)) {
+                if (!('permission' in Notification)) {
                     Notification.permission = permission;
                 }
                 if (permission === "granted") {
-                    var notification = new Notification(msg);
+                    var notification = new Notification(msg, {
+                        body: body
+                    });
                 }
             });
         }
     }
 
     var socket = io();
-    socket.on('matchEnded', function(msg){
+    socket.on('matchEnded', function (msg) {
+        nofitificationAPI(msg.msg, msg.body);
+    });
+    socket.on('nouvelleManche', function (msg) {
         nofitificationAPI(msg.msg);
     });
-    socket.on('nouvelleManche', function(msg){
-        nofitificationAPI(msg.msg);
-    });
-    socket.on('contestation', function(msg){
+    socket.on('contestation', function (msg) {
         nofitificationAPI(msg.msg);
     });
 

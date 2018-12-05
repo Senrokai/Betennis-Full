@@ -26,7 +26,6 @@ angular.module('Betennis').controller('listeMatchCtrl', ['$scope', "$state", 'Ma
             delete $scope.listeMatch.$promise;
             delete $scope.listeMatch.$resolved;
             localStorage.setItem("liste-match", angular.toJson($scope.listeMatch));
-            console.log($scope.listeMatch[0]);
             if($scope.listeMatch.length > 0)
             {
                 $scope.aucunMatchTrouve = false;

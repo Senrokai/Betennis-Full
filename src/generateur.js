@@ -1,8 +1,9 @@
 const Partie = require('./modeles/partie');
 const Joueur = require('./modeles/joueur');
+const _ = require('lodash');
 var opSocket = null;
 
-const modificateurVitesse = Math.min(process.argv[2], 1);
+const modificateurVitesse = Math.min(process.argv[2], 10);
 
 const listePartie = [];
 
@@ -38,33 +39,34 @@ function demarrerPartie(partie) {
 
     const timer = setInterval(function () {
         partie.jouerTour();
-        let pari = "";
-        if(partie.userParis.montant !== null) {
-            pari = "Votre pari vous à rapporter : ";
-            let miseTotal = partie.paris.montants[0] + partie.paris.montants[1] + partie.userParis.montant;
-            let miseTotalTaxed = miseTotal * 0.75;
-            let partMockParieur = 10 / miseTotal;
-            let partUser = partie.userParis.montant / miseTotal;
-
-            if ((partie.userParis.joueur === 0 && partie.pointage.manches[0] === 2)) {
-                let parieursTotal = partie.paris.parieurs[0];
-                let part = miseTotalTaxed / (partMockParieur * parieursTotal + partUser);
-                let gain = Math.floor(partUser * part);
-                pari +=  gain + "$.";
-            } else if (partie.userParis.joueur === 1 && partie.pointage.manches[1] === 2) {
-                let parieursTotal = partie.paris.parieurs[1];
-                let part = miseTotalTaxed / (partMockParieur * parieursTotal + partUser);
-                let gain = Math.floor(partUser * part);
-                pari += gain + "$.";
-            } else {
-                pari = "Vous avez perdu votre pari de " + partie.userParis.montant + "$."
-            }
-        }
 
         if (partie.estTerminee()) {
+            let pari = "Vous n'avez pas parié sur ce match.";
+            if (partie.userParis.montant !== null) {
+                pari = "Votre pari vous à rapporter : ";
+                let miseTotal = parseInt(partie.paris.montants[0]) + parseInt(partie.paris.montants[1]) +
+                    parseInt(partie.userParis.montant);
+                let miseTotalTaxed = miseTotal * 0.75;
+                let partMockParieur = 10 / miseTotal;
+                let partUser = parseInt(partie.userParis.montant) / miseTotal;
+                if (_.isEqualWith(partie.userParis.joueur, partie.joueurs[0]) && partie.pointage.manches[0] === 2) {
+                    let parieursTotal = parseInt(partie.paris.parieurs[0]);
+                    let part = miseTotalTaxed / (partMockParieur * parieursTotal + partUser);
+                    let gain = Math.floor(partUser * part);
+                    pari += gain + "$.";
+                } else if (_.isEqualWith(partie.userParis.joueur, partie.joueurs[1]) && partie.pointage.manches[1] === 2) {
+                    let parieursTotal = parseInt(partie.paris.parieurs[1]);
+                    let part = miseTotalTaxed / (partMockParieur * parieursTotal + partUser);
+                    let gain = Math.floor(partUser * part);
+                    pari += gain + "$.";
+                } else {
+                    pari = "Vous avez perdu votre pari de " + partie.userParis.montant + "$."
+                }
+            }
             opSocket.sockets.emit('matchEnded', {
                 msg: 'La partie ' + partie.joueurs[0].nom + '(' + partie.pointage.manches[0] + ') vs ' +
-                    partie.joueurs[1].nom + '(' + partie.pointage.manches[1] + ') est terminée. ' + pari
+                    partie.joueurs[1].nom + '(' + partie.pointage.manches[1] + ') est terminée.',
+                body: pari
             });
             clearInterval(timer);
         }

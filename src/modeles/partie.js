@@ -36,6 +36,7 @@ class Partie {
                 console.log('contestation echouee');
             } else {
                 contestationReussi = true;
+                this.constestation[contestant] = Math.max(0, this.constestation[contestant] - 1);
                 this.io.sockets.emit('contestation',{msg:this.joueurs[contestant].nom + ' réussi sa contestation contre '+
                         this.joueurs[adversaire].nom+'.'});
                 console.log('contestation reussie');
@@ -60,7 +61,7 @@ class Partie {
     }
 
     nouvelleManche() {
-        this.io.sockets.emit('nouvelleManche',{msg:'Manche terminée : ' + this.joueurs[0].nom + ' (' + this.pointage.manches[0] + ') / ' + 
+        this.io.sockets.emit('nouvelleManche',{msg:'Manche terminée : ' + this.joueurs[0].nom + ' (' + this.pointage.manches[0] + ') / ' +
                                                                           this.joueurs[1].nom + ' (' + this.pointage.manches[1] + ')'});
         this.constestation = [3, 3];
     }
